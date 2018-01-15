@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+   <meta charset="utf-8"/>
+     <link rel="stylesheet" href="../css/estilo_css.css" />
+     <script type="text/javascript" src="../lib-jQuery/jquery-3.1.0.js"></script>  
+        <script type="text/javascript" src="../js/herramientas.js"></script>   
+        <script type="text/javascript" src="../js/validar-etapro.js"></script>   
+        <script type="text/javascript" src="../js/funcion-etapro.js"></script>  
+        <script type="text/javascript" src="../js/validar-tiposoft.js"></script>   
+        <script type="text/javascript" src="../js/funcion-tiposoft.js"></script>  
+        <script type="text/javascript" src="../js/aspecto-elementos.js"></script>  
+        <!-- *****Función para eliminar el parpadeo de la carga de esta página*****-->
+        <script type="text/javascript">
+        $(document).ready(function(){
+         $('body').hide(); $('body').fadeIn(0);
+        of_mod($("#proyectos"));
+        of_mod($("#horarios"));
+        of_mod($("#usuarios"));
+        on_mod($("#panel-control"));
+                   $("#mostrar_etapas_proyecto").load('../vista/buscar-et-proyecto.html');
+                     $("#mostrar_tipos_software").load('../vista/buscar-tipo-soft.html');
+          });
+        </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>  
+<body>
+        <!-- ************************************************************************************** -->
+         <div>
+        <input type="text"  maxlength="20" id="cod_etapasoft_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+        <input type="text"  maxlength="20" id="desc_etapasoft_actual" style='display:none;'><!--VARIABLE OCULTA-->
+
+        <input type="text"  maxlength="20" id="cod_tiposoft_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+        <input type="text"  maxlength="20" id="desc_tiposoft_actual" style='display:none;'><!--VARIABLE OCULTA-->
+
+        </div>
+        <!-- ************************************************************************************** -->
+     <div class="titulo-modulo">Panel de control - Registro de: Etapas de proyecto - tipos de software</div>
+       <div class="contenedor-tabla">
+         <table class="tabla" border="0" width="100%"><!-- *******TABLA PRINCIPAL******* -->
+          <tr><!-- *******TR PRINCIPAL 1******* -->
+          <td style="width:50%;"><!-- *******TD PRINCIPAL 1******* -->
+             <table class="tabla" border="0" width="50%"><!-- *******SUB-TABLA 1******* -->
+                <tr>
+                  <td>
+                  <form id="form_etapa-proyecto" autocomplete="off"><!-- *******ETAPAS DE PROYECTO******* -->
+                   <table class="tabla" border="0" width="50%"><!-- *******TABLA CONTENEDOR 1******* -->
+                     <tr><!-- *******Campos******* -->
+                      <td>
+                     <table border="0" width="100%"><!-- *******CAMPOS******* -->
+                       <tr>
+                        <td>
+                          <label>Etapa de proyecto:</label>
+                          <input style="width:50%;" type="text" maxlength="30" id="etapa-proyecto-desc">
+                        </td>
+                       </tr>
+                     </table>
+                     </td>
+                     </tr>
+                     <tr><!-- *******Boton******* -->
+                      <td>
+                           <div class="contenedor-boton">
+                             <button type="submit" id="boton-enviar-etapa-proyecto">
+                             <div id="texto-guardar-etapa-proyecto">Registrar</div>
+                             </button>
+                         </div>
+                       <div class="fondo-mensaje" id="mensaje-ep"></div>
+                     </td>
+                     </tr>
+                  </table>
+                </form><!-- *******CIERRE ETAPAS DE PROYECTO******* -->
+                  </td>
+                </tr>
+             </table>
+          </td><!-- *******TD PRINCIPAL******* -->
+<!-- **********************************DIVISION DENTRE TABLAS CONTENEDORES********************************* -->
+          <td style="width:50%;"><!-- *******TD PRINCIPAL******* -->
+            <form id="form_tipos-software" autocomplete="off"><!-- *******FORMULARIO TIPOS DE SOFTWARE******* -->
+             <table class="tabla" border="0" width="50%"><!-- *******SUB-TABLA 2******* -->
+                <tr>
+                  <td>
+                     <table border="0" width="100%"><!-- *******CAMPOS******* -->
+                       <tr>
+                        <td>
+                          <label>Tipos de software:</label>
+                          <input style="width:50%;" type="text" maxlength="100" id="tipos-software-desc">
+                        </td>
+                       </tr>
+                     </table>
+                  </td>
+                </tr>
+                <tr><!-- *******Boton******* -->
+                  <td>
+                      <div class="contenedor-boton">
+                             <button type="submit" id="boton-enviar-tipos-software">
+                             <div id="texto-guardar-tipos-software">Registrar</div>
+                             </button>
+                      </div>
+                        <div class="fondo-mensaje" id="mensaje-ts"></div>
+                  </td>
+                </tr>
+             </table>
+            </form><!-- *******CIERRE DEL FORMULARIO TIPOS DE SOFTWARE******* -->
+            </td><!-- *******TD PRINCIPAL 1******* -->
+           </tr><!-- *******TR PRINCIPAL 1******* -->
+          <tr><!-- *******TR PRINCIPAL 2******* -->
+          <td><!-- *******TD PRINCIPAL 2******* -->
+                  <!-- *****************************CONTENIDO**************************************** -->
+                  <div class="titulo-modulo">Descripci&oacuten etapas de proyecto</div>
+                  <div>
+                  <div id="mostrar_etapas_proyecto"></div>
+                  </div>
+                  <!-- *****************************CONTENIDO**************************************** -->
+          </td><!-- *******TD PRINCIPAL 2******* -->
+          <td><!-- *******TD PRINCIPAL 2******* -->
+                  <!-- *****************************CONTENIDO**************************************** -->
+                  <div class="titulo-modulo">Descripci&oacuten tipos de software</div>
+                  <div>
+                  <div id="mostrar_tipos_software"></div>
+                  </div>
+                   <!-- *****************************CONTENIDO**************************************** -->
+          </td><!-- *******TD PRINCIPAL 2******* -->
+          </tr><!-- *******TR PRINCIPAL 2******* -->
+          </table><!-- *******TABLA PRINCIPAL******* -->
+     </div>
+</body>
+</html>

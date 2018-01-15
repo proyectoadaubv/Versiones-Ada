@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+        <link rel="stylesheet" href="../css/estilo_css.css" />
+        <link rel="stylesheet" href="../css/pcal.css" />
+        <script type="text/javascript" src="../lib-jQuery/jquery-3.1.0.js"></script>
+        <script type="text/javascript" src="../js/herramientas.js"></script>    
+        <script type="text/javascript" src="../js/aspecto-elementos.js"></script> 
+        <script type="text/javascript" src="../js/validar-data.js"></script> 
+        <script type="text/javascript" src="../js/pcal.js"></script>
+      <!-- *****Función para eliminar el parpadeo de la carga de esta página*****-->
+     <script type="text/javascript">
+     $(document).ready(function(){  $('body').hide(); $('body').fadeIn(0); 
+        of_mod($("#proyectos"));
+        on_mod($("#horarios"));
+        of_mod($("#proyectos"));
+        of_mod($("#usuarios"));
+        of_mod($("#panel-control"));
+
+       /*<!--== Carga de listas desplegables ==-->*/
+        $.ajax({ type: "POST", url: "../procesos/mostrar-prog-selct.php", success: function(response){
+        $('.programa select').html(response).fadeIn(); } });
+
+        $.ajax({ type: "POST", url: "../procesos/mostrar-ubic-selct.php", success: function(response){
+        $('.ubicacion select').html(response).fadeIn(); } });
+
+        $.ajax({ type: "POST", url: "../procesos/mostrar-dedicacion-selct.php", success: function(response){
+        $('.dedicacion select').html(response).fadeIn(); } });
+
+
+        $.ajax({ type: "POST", url: "../procesos/mostrar-profesion-selct.php", success: function(response){
+        $('.pre-grado select').html(response).fadeIn(); } });
+
+        $.ajax({ type: "POST", url: "../procesos/mostrar-profesion-selct.php", success: function(response){
+        $('.pos-grado select').html(response).fadeIn(); } });
+
+        $.ajax({ type: "POST", url: "../procesos/mostrar-profesion-selct.php", success: function(response){
+        $('.doctorado select').html(response).fadeIn(); } });
+
+        $.ajax({ type: "POST", url: "../procesos/mostrar-profesion-selct.php", success: function(response){
+        $('.ultimo-nivel select').html(response).fadeIn(); } });
+
+   });
+     </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   </head>  
+      <body>
+       <!-- ************************************************************************************** -->
+         <div>
+           <input type="text"  maxlength="20" id="cod_persona_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+         </div>
+        <!-- ************************************************************************************** -->
+       <!--== apertura modal calendario ==-->
+        <div class="modal-calendario">
+         <div class="modal_contenedor">
+            <div class="cerrar-calendario">x</div>
+             <table class="tabla-calendario">
+              <tr>
+              <td>
+               <label>Dia</label>
+               <select id="dia"></select>
+              </td>
+              <td>
+               <label>Mes</label>
+               <select id="mes"></select>
+              </td>
+              <td>
+               <label>Año</label>
+               <select id="anio"></select>
+              </td>
+              </tr>
+              <tr>
+              <td colspan="3">
+              <div class="boton-aceptar"></div>
+              </td>
+              </tr>
+             </table>
+         </div>
+        </div>
+       <!--== cierre modal calendario ==-->
+       <div class="titulo-modulo">Formulario data docente</div>
+       <div class="titulo-modulo">Listar docentes</div>
+
+<form id="form-data-docente" autocomplete="off" method="POST">
+       <div class="contenedor-tabla"><!--== apertura del contenedor de tablas==-->
+        <table class="tabla" border="0">
+<!--== Linea 1 == -->
+        <tr>
+          <td style="width:25%;">
+                   <label>C&eacutedula</label><br>
+                   <input type="text" maxlength="10" style="width:90%;" id="cedula">
+          </td>
+          <td style="width:25%;">
+                   <label>Programa</label><br>
+                   <div class="programa">
+                   <select style="width:100%;" id="pfg-docente"></select>
+                   </div>
+          </td>
+          <td style="width:25%;">
+                   <label>Ubicaci&oacuten</label><br>
+                   <div class="ubicacion">
+                   <select style="width:100%;" id="espacio-docente"></select>
+                   </div>
+          </td>
+          <td style="width:25%;">
+                   <label>Dedicaci&oacuten</label><br>
+                   <div class="dedicacion">
+                   <select style="width:100%;" id="dedicacion-docente"></select>
+                   </div>
+          </td>
+        </tr>
+<!--== Linea 2 == -->
+        <tr>
+          <td style="width:25%;">
+                   <label>Titulo pregrado</label><br>
+                   <div class="pre-grado">
+                   <select style="width:100%;" id="pregrado-docente"></select>
+                   </div>
+          </td>
+          <td style="width:25%;">
+                   <label>Titulo pos-grado</label><br>
+                   <div class="pos-grado">
+                   <select style="width:100%;" id="pos-grado-docente"></select>
+                   </div>
+          </td>
+          <td style="width:25%;">
+                   <label>Titulo doctorado</label><br>
+                   <div class="doctorado">
+                   <select style="width:100%;" id="doctorado-docente"></select>
+                   </div>
+          </td>
+          <td style="width:25%;">
+                   <label>&Uacuteltimo nivel</label><br>
+                   <div class="ultimo-nivel">
+                   <select style="width:100%;" id="ultimo-docente"></select>
+                   </div>
+          </td>
+        </tr>
+
+
+        </table>
+</form>
+
+
+       </div><!--== cierre del contenedor de tablas==-->
+      </body>
+   </html>

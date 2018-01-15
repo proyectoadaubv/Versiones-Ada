@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+   <meta charset="utf-8"/>
+     <link rel="stylesheet" href="../css/estilo_css.css" />
+     <script type="text/javascript" src="../lib-jQuery/jquery-3.1.0.js"></script>  
+        <script type="text/javascript" src="../js/herramientas.js"></script>   
+        <script type="text/javascript" src="../js/validar-cargo.js"></script>   
+        <script type="text/javascript" src="../js/funcion-cargos.js"></script>  
+        <script type="text/javascript" src="../js/validar-tipoper.js"></script>   
+        <script type="text/javascript" src="../js/funcion-tipoper.js"></script>  
+        <script type="text/javascript" src="../js/validar-profesion.js"></script>   
+        <script type="text/javascript" src="../js/funcion-profesion.js"></script>  
+        <script type="text/javascript" src="../js/aspecto-elementos.js"></script>  
+        <!-- *****Función para eliminar el parpadeo de la carga de esta página*****-->
+        <script type="text/javascript">
+        $(document).ready(function(){
+         $('body').hide(); $('body').fadeIn(0); 
+        of_mod($("#proyectos"));
+        of_mod($("#horarios"));
+        of_mod($("#usuarios"));
+        on_mod($("#panel-control"));
+                 $("#mostrar_cargos").load('../vista/buscar-cargos.html');
+                   $("#mostrar_tipos_persona").load('../vista/buscar-tipoper.html');
+                     $("#mostrar_profesiones").load('../vista/buscar-profesion.html');
+       });
+        </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>  
+<body>
+        <!-- ************************************************************************************** -->
+         <div>
+        <input type="text"  maxlength="20" id="cod_cargos_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+        <input type="text"  maxlength="20" id="desc_cargos_actual" style='display:none;'><!--VARIABLE OCULTA-->
+
+        <input type="text"  maxlength="20" id="cod_tipo-persona_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+        <input type="text"  maxlength="20" id="desc_tipo-persona_actual" style='display:none;'><!--VARIABLE OCULTA-->
+
+        <input type="text"  maxlength="20" id="cod_profesiones_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+        <input type="text"  maxlength="20" id="desc_profesiones_actual" style='display:none;'><!--VARIABLE OCULTA-->
+        </div>
+        <!-- ************************************************************************************** -->
+     <div class="titulo-modulo">Panel de control - Registro de: cargos - tipo de persona - profesiones</div>
+     <div>
+         <table class="tabla" border="0" width="60%"><!-- *******TABLA PRINCIPAL******* -->
+          <tr><!-- *******TR PRINCIPAL 1******* -->
+          <td style="width:33%;">
+             <table class="tabla" border="0" width="100%"><!-- *******SUB-TABLA 1******* -->
+                <tr>
+                  <td>
+                  <form id="form_cargos" autocomplete="off"><!-- *******CARGOS******* -->
+                   <table class="tabla" border="0" width="100%"><!-- *******TABLA CONTENEDOR 1******* -->
+                     <tr><!-- *******Campos******* -->
+                      <td>
+                      <table border="0" width="100%"><!-- *******CAMPOS******* -->
+                       <tr>
+                        <td>
+                          <label>Cargo</label><br>
+                          <input style="width:90%;" type="text" maxlength="100" id="cargo-desc">
+                        </td>
+                       </tr>
+                     </table>
+                     </td>
+                     </tr>
+                     <tr><!-- *******Boton******* -->
+                      <td>
+                         <div class="contenedor-boton">
+                             <button type="submit" id="boton-enviar-cargo">
+                             <div id="texto-guardar-cargo">Registrar</div>
+                             </button>
+                         </div>
+                     <div class="fondo-mensaje" id="mensaje-c"></div>    
+                     </td>
+                     </tr>
+                  </table>
+                </form><!-- *******CIERRE DE CARGOS******* -->
+              </td>
+            </tr>
+         </table>
+      </td>
+<!-- **********************************DIVISION DENTRE TABLAS CONTENEDORES********************************* -->
+          <td style="width:33%;"><!-- *******TIPO DE PERSONA******* -->              
+             <table class="tabla" border="0" width="80%"><!-- *******SUB-TABLA 1******* -->
+                <tr>
+                  <td>
+                  <form id="form_tipo_persona" autocomplete="off"><!-- *******TIPO DE PERSONA******* -->
+
+                   <table class="tabla" border="0" width="100%"><!-- *******TABLA CONTENEDOR 1******* -->
+                     <tr><!-- *******Campos******* -->
+                      <td>
+                      <table border="0" width="100%"><!-- *******CAMPOS******* -->
+                       <tr>
+                        <td>
+                          <label>Tipo persona</label><br>
+                          <input style="width:95%;" type="text" maxlength="100" id="tipo-persona-desc">
+                        </td>
+                       </tr>
+                     </table>
+                     </td>
+                     </tr>
+                     <tr><!-- *******Boton******* -->
+                      <td>
+                         <div class="contenedor-boton">
+                             <button type="submit" id="boton-enviar-tipo-persona">
+                             <div id="texto-guardar-tipo-persona">Registrar</div>
+                             </button>
+                         </div>
+                     <div class="fondo-mensaje" id="mensaje-tp"></div>  
+                     </td>
+                     </tr>
+                  </table>
+                </form><!-- *******CIERRE DE TIPO DE PERSONA******* -->
+              </td>
+            </tr>
+          </table>
+        </td>
+<!-- **********************************DIVISION DENTRE TABLAS CONTENEDORES********************************* -->
+          <td style="width:33%;"><!-- *******PROFESIONES******* -->  
+             <table class="tabla" border="0" width="80%"><!-- *******SUB-TABLA 1******* -->
+                <tr>
+                  <td>
+                  <form id="form_profesiones" autocomplete="off"><!-- *******PROFESIONES******* -->
+                   <table class="tabla" border="0" width="100%"><!-- *******TABLA CONTENEDOR 1******* -->
+                     <tr><!-- *******Campos******* -->
+                      <td>
+                     <table border="0" width="100%"><!-- *******CAMPOS******* -->
+                       <tr>
+                        <td>   
+                          <label>Profesión</label><br>
+                          <input style="width:95%;" type="text" maxlength="100" id="profesion-desc">
+                        </td>
+                       </tr>
+                     </table>
+                     </td>
+                     </tr>
+                     <tr><!-- *******Boton******* -->
+                      <td>
+                         <div class="contenedor-boton">
+                             <button type="submit" id="boton-enviar-profesion">
+                             <div id="texto-guardar-profesion">Registrar</div>
+                             </button>
+                         </div>
+                         <div class="fondo-mensaje" id="mensaje-p"></div>  
+                       </td>
+                     </tr>
+                    </table>
+                  </form><!-- *******CIERRE DE PROFESIONES******* -->
+                </td>
+            </tr>
+         </table>
+      </td>
+<!-- **********************************DIVISION DENTRE CONTENEDORES********************************* -->
+          <tr><!-- *******TR PRINCIPAL 2******* -->
+          <td><!-- *******MOSTRAR CARGOS******* -->
+                  <!-- *****************************CONTENIDO**************************************** -->
+                  <div class="titulo-modulo">Cargos</div>
+                  <div>
+                  <div id="mostrar_cargos"></div>
+                  </div>
+                  <!-- *****************************CONTENIDO**************************************** -->
+          </td><!-- *******TD PRINCIPAL 2******* -->
+          <td><!-- *******MOSTRAR TIPOS DE PERSONA******* -->
+                  <!-- *****************************CONTENIDO**************************************** -->
+                  <div class="titulo-modulo">Tipo persona</div>
+                  <div>
+                  <div id="mostrar_tipos_persona"></div>
+                  </div>
+                   <!-- *****************************CONTENIDO**************************************** -->
+          </td><!-- *******TD PRINCIPAL 2******* -->
+          <td><!-- *******MOSTRAR PROFESIONES******* -->
+                  <!-- *****************************CONTENIDO**************************************** -->
+                  <div class="titulo-modulo">Profesiones</div>
+                  <div>
+                  <div id="mostrar_profesiones"></div>
+                  </div>
+                   <!-- *****************************CONTENIDO**************************************** -->
+          </td><!-- *******TD PRINCIPAL 2******* -->
+          </tr><!-- *******TR PRINCIPAL 2******* -->
+          </table><!-- *******TABLA PRINCIPAL******* -->
+     </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<header>
+<meta charset="utf-8">
+
+<script>
+$(document).ready(function(){
+         $('body').hide(); $('body').fadeIn(0);
+         $("#Mostrar_dat_esp").load('../procesos/mostrar-esp.php');//Cargar datos desde la base de datos
+         mayuscula("input#Busqueda");//Convertir en mayuscula
+         texto_fondo("#Busqueda", "Buscar por ubicación");//Colocar texto de fondo
+         entrada_raton('#Busqueda');//Evento que se ejecuta al entrar el mouse adentro
+         solo_letras('#Busqueda');//Validar para solo letras
+
+        var consulta;
+        //hacemos focus al campo de búsqueda
+        $("#Busqueda").focus();
+                                                                                                     
+        //comprobamos si se pulsa una tecla
+        $("#Busqueda").keyup(function(e){
+                                      
+              //obtenemos el texto introducido en el campo de búsqueda
+              consulta = $("#Busqueda").val();
+              //hace la búsqueda      
+              $.ajax({
+                    type: "POST",
+                    url: "../procesos/mostrar-esp.php",
+                    data: "valorBusqueda="+consulta,
+                    dataType: "html",
+                    beforeSend: function(){
+                    //imagen de carga
+                    $("#Mostrar_dat_esp").html("<p align='center'><img src='../img/ico-cargar.gif'/></p>");
+                    },
+                    error: function(){
+                     mensaje_error("Error de peticion");
+                    },
+                    success: function(data){                                                    
+                    $("#Mostrar_dat_esp").empty();
+                    $("#Mostrar_dat_esp").append(data);                                                             
+                    }
+              });                                                                         
+        });                                                     
+});             
+</script>
+</header>
+<body>
+<table border="0" class="estilo_tabla_buscar">
+  <tr>
+    <td>
+      <label class="texto-buscar">Buscar:</label>&nbsp;
+      <input type="text" id="Busqueda" style="width:30%;" maxlength="150" autocomplete="off"/>
+    </td>
+  </tr>
+</table>
+      <div id="Mostrar_dat_esp"></div>
+</body>
+</html>

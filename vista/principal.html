@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+	<title>Sistema Administrativo</title>
+  <link rel="shortcut icon" href="../img/ico-ubv.png"><!--=== icono del sistema ===-->
+  <!--=== meta ===-->
+	<meta charset="utf-8"/><!--=== tildes ===-->
+  <meta name="Titulo" content="Aplicación Web Administrativa" />
+  <meta name="Institución" content="Universidad Bolivariana de Venezuela Sede-Zulia" />
+  <meta name="Fecha de desarrollo" content="desde: 10 de Julio 2016" />
+  <meta name="Desarrollador" content="Pirela Adalberto" />
+  <meta name="Lema" content="¡Por La Gloria en nombre de Cristo!" />
+  <!--=== css ===-->
+    <link rel="stylesheet" href="../css/estilo_css.css" />
+    <link rel="stylesheet" href="../css/font-awesome.min.css"/>
+     <link rel="stylesheet" href="../css/pcal.css" />
+  <!--=== jQuery ===-->
+    <script type="text/javascript" src="../lib-jQuery/jquery-3.1.0.js"></script> 
+  <!--=== js ===-->
+    <script type="text/javascript" src="../js/pcal.js"></script>
+  <!--=== JavaScript - carga de módulos===-->
+  <script type="text/javascript">
+  
+$(document).ready(function(){/*APERTURA*/
+/*<!--=== función nav flotante ===-->*/
+         $(window).scroll(function()
+          {
+            if ($(this).scrollTop() > 100)
+
+            $('nav').addClass("fixed").fadeIn();
+
+            else $('nav').removeClass("fixed");
+         });
+        /*<!--=== Funciones para el diseño adaptable ===-->*/
+          $(function() {
+            var pull = $('#pull');
+             menu = $('nav ul');
+             menuHeight = menu.height();
+
+             $(pull).on('click', function(e) {
+              e.preventDefault();
+              menu.slideToggle();
+              });
+             });
+
+          $(window).resize(function(){
+           var w = $(window).width();
+            if(w > 320 && menu.is(':hidden')) {
+            menu.removeAttr('style');
+            }
+           });
+        /*<!--=== Funcion para deslizar hacia arriba ===-->*/
+               $('.ir-arriba').click(function(){
+               $('body, html').animate({
+               scrollTop: '0px'
+               }, 300);
+               });
+
+               $(window).scroll(function(){
+               if( $(this).scrollTop() > 0 ){
+               $('.ir-arriba').slideDown(300);
+               } else {
+               $('.ir-arriba').slideUp(300);
+               }
+               });
+
+/*<!-- === Cargar modulo periodo  === -->*/
+         $("#periodo").click(function(){
+         $.get("../vista/vista-periodo.html", function(PaginaModulo){
+         $("#contenedor-modulo").html(PaginaModulo);
+         });
+         });
+
+/*<!-- === Cargar módulo malla curricular  === -->*/
+         $("#malla-curricular").click(function(){
+         $.get("../vista/vista-malla.html", function(PaginaModulo){
+         $("#contenedor-modulo").html(PaginaModulo); 
+         });
+         });
+/*<!-- === Cargar módulo espacios academicos  === -->*/
+        $("#espacios-academicos").click(function(){
+
+         $.get("vista-espacios.html", function(PaginaModulo){
+          $("#contenedor-modulo").html(PaginaModulo);
+            });
+         $.get('../vista/buscar-edif.html', function(PaginaModulo){
+          $("#mostrar_edificio").html(PaginaModulo);
+            });
+        });
+/*<!-- === Cargar módulo aulas y laboratorios  === -->*/
+        $("#crear-aula-lab").click(function(){
+
+         $.get("vista-aulas.html", function(PaginaModulo){
+          $("#contenedor-modulo").html(PaginaModulo);
+            });
+        });
+/*<!-- === Cargar módulo trayectos y tramos  === -->*/
+        $("#trayecto-tramo").click(function(){
+          $.get("vista-tray.html", function(PaginaModulo){
+               $("#contenedor-modulo").html(PaginaModulo);
+            });
+        });
+/*<!-- === Cargar módulo secciones y turnos === -->*/
+        $("#seccion-turnos").click(function(){
+
+          $.get("vista-seccion.html", function(PaginaModulo){
+               $("#contenedor-modulo").html(PaginaModulo);
+            });
+        });
+/*<!-- === Cargar módulo estado - municipio - parroquia === -->*/
+    $("#estado").click(function(){
+          $.get("vista-estados.html", function(PaginaModulo){
+               $("#contenedor-modulo").html(PaginaModulo); 
+            });
+        });
+/*<!-- === Cargar módulo cargos === -->*/
+    $("#cargo").click(function(){
+          $.get("vista-cargos.html", function(PaginaModulo){
+               $("#contenedor-modulo").html(PaginaModulo); 
+            });
+        });
+/*<!-- === Cargar módulo etapas de proyecto === -->*/
+        $("#etapas-proyecto").click(function(){
+          $.get("vista-recursos.html", function(PaginaModulo){
+               $("#contenedor-modulo").html(PaginaModulo);
+            });
+        });
+/*<!-- === Cargar módulo recursos academicos === -->*/
+        $("#recursos-academicos").click(function(){
+          $.get("vista-rec-academicos.html", function(PaginaModulo){
+               $("#contenedor-modulo").html(PaginaModulo);
+            });
+        });
+
+/*<!-- === Cargar módulo persona === -->*/
+        $("#persona").click(function(){
+          $.get("vista-persona.html", function(PaginaModulo){
+               $("#contenedor-modulo").html(PaginaModulo);
+            });
+        });
+/*<!-- === Cargar módulo data docente === -->*/
+        $("#data_docente").click(function(){
+          $.get("vista-data-docente.html", function(PaginaModulo){
+               $("#contenedor-modulo").html(PaginaModulo);
+            });
+        });
+
+/*<!-- === Cargar módulo carga academica === -->*/
+        $("#carga_academica").click(function(){
+          $.get("vista-carga-academica.html", function(PaginaModulo){
+               $("#contenedor-modulo").html(PaginaModulo);
+            });
+        });
+
+/*<!-- === Cargar módulo reportes === -->*/
+        $("#reportes").click(function(){
+          $.get("vista-reportes.html", function(PaginaModulo){
+               $("#contenedor-modulo").html(PaginaModulo);
+            });
+        });
+
+
+
+});
+/*<!--  === CIERRE === -->*/
+   </script>
+  <!--=== Esta etiqueta le dice al navegador que use una determinada anchura, desactivando la escala inicial ===-->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+ </head> 
+   <body>  <!--=== apertura cuerpo de la pagina ===-->
+    <span class="ir-arriba">^</span>  <!--=== subir pagina hacia arriba ===-->
+  <!--=== Contenedor ===-->
+     <div id="contenedor-principal">
+  <!--=== Banner ===-->
+      <img class="Banner" src="../img/banner.png"/>
+  <!--=== Menú de navegación ===-->
+      <nav>
+         <ul id="menu">
+           <li><a id="panel-control"><span><img src="../img/ico-conf.png"/>Panel de control&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-down"></i> </span></a>
+                <div class="subs">
+                   <div class="col">
+                       <ul>
+                         <li>
+                         <a id="periodo">Establecer el periodo acad&eacutemico</a>
+                         </li>
+                           <li>
+                              <a id="Modulo_reg-infraestructura">Infraestructura&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <i class="fa fa-angle-right"></i>
+                              </a>
+                                  <div class="subs">
+                                    <div class="col">
+                                       <ul>
+                                          <li>
+                                            <a id="espacios-academicos">Crear espacios</a>
+                                          </li>
+                                          <li>
+                                            <a id="crear-aula-lab">Crear aulas y laboratorios</a> 
+                                          </li>
+                                       </ul>
+                                   </div>
+                                   </div>
+                            </li>
+                            <li>
+                                 <a id="Modulo_reg-recursos">Registrar recursos&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
+
+                                  <div class="subs">
+                                    <div class="col" >
+                                       <ul>
+                                         <li>
+                                            <a id="trayecto-tramo">Trayectos y tramos</a>
+                                         </li>
+                                         <li>
+                                            <a id="seccion-turnos">Secciones y turnos</a> 
+                                         </li>
+                                         <li>
+                                            <a id="estado">Estados - municipios - parroquias</a> 
+                                         </li>
+                                         <li>
+                                            <a id="cargo">Cargos - tipo de persona - profesiones</a> 
+                                         </li>
+                                         <li>
+                                            <a id="etapas-proyecto">Etapas de proyecto - tipos de software</a> 
+                                         </li>
+                                       </ul>
+                                   </div>
+                                   </div>
+                             </li>
+                               <li>
+                                  <a id="malla-curricular">Registrar malla curricular</a>
+                               </li>
+                               <li>
+                                  <a id="recursos-academicos">Recursos acad&eacutemicos</a>
+                               </li>
+                               <li>
+                                  <a id="persona">Registrar persona</a>
+                               </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                <a id="horarios"><span><img src="../img/ico-horarios.png"/>Horarios&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-down"></i></span>
+                </a>
+                
+                    <div class="subs">
+                        <div class="col">
+                            <ul>
+                                 <li>
+                                 <a id="data_docente">Data docente</a>
+                                 </li>
+                                 <li>
+                                 <a id="carga_academica">Carga acad&eacutemica</a>
+                                 </li>
+                                 <li>
+                                 <a id="horarios">Gestionar creaci&oacuten de horarios</a>
+                                 </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                <a id="proyectos"><span><img src="../img/ico-proyecto.png"/>Proyectos&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-down"></i></span></a>
+                    <div class="subs">
+                        <div class="col">
+                            <ul>
+                                 <li>
+                                 <a id="proyecto">Gestionar proyectos del PFG</a>
+                                 </li>
+                                 <li>
+                                  <a id="reportes">Reportes</a>
+                                 </li>
+                            </ul>
+                        </div>
+                    </div>
+                 </li>
+                <li>
+                <a><span><img src="../img/ico-conf-user.png" />Usuarios</span></a>
+                    <div class="subs">
+                        <div class="col">
+                            <ul>
+                                 <li>
+                                    <a id="usuarios">Registrar usuario</a>
+                                 </li>
+                            </ul>
+                        </div>
+                    </div>
+                 </li>
+
+                <li><a><img src="../img/ico-ayuda.png" /> Ayuda</a></li>
+                 <!--##################LOGIN##################--> 
+                 <li>
+                    <a href="../index.php">
+                    <img src="../img/ico-login.png"/>
+                     Cerrar sesión
+                   </a>
+                </li>
+                 <!--##################LOGIN##################--> 
+             <br clear="all" />
+            </ul>
+          <a id="pull" href="#">Men&uacute</a>
+     </nav>
+
+  <!--=== Cierre del Menú de navegación ===-->
+  <!--=== Linea horizontal ===-->
+
+  <!--=== Contenidos ===-->
+
+        <div id="contenedor-modulo"></div>
+
+    <!--=== Pie de pagina ===-->
+     <footer>
+      © 2017 - Universidad Bolivariana de Venezuela eje Geopolitico regional Cacique Mara
+         -
+      <script>
+         var mes = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+                var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+         var f=new Date();
+        document.write(diasSemana[f.getDay()] + ", " + f.getDate() + " de " + mes[f.getMonth()] + " de " + f.getFullYear());
+      </script> 
+     </footer>  <!--=== Cierre del pie de pagina ===-->
+    </div>  <!--=== Cierre del contenedor principal ===-->
+  <!--=== Refran: "Yo no soy de tomar, pero a veces me dan ganas" ===-->
+  </body>  <!--=== Cierre del cuerpo de la pagina ===-->
+</html>  <!--=== Cierre html ===-->

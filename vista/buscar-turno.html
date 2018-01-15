@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<header>
+<meta charset="utf-8">
+
+<script>
+$(document).ready(function(){
+          
+         $("#Mostrar_datos_turno").load('../procesos/tabla-turno.php');//Cargar datos desde la base de datos
+         mayuscula("input#BusquedaTurno");//Convertir en mayuscula
+         texto_fondo("#BusquedaTurno", "Ejemplo: Diurno, nocturno");//Colocar texto de fondo
+         entrada_raton('#BusquedaTurno');//Evento que se ejecuta al entrar el mouse adentro
+         solo_letras('#BusquedaTurno');//Validar para solo letras
+
+        var consulta;
+        //hacemos focus al campo de búsqueda
+        $("#BusquedaTurno").focus();
+                                                                                                     
+        //comprobamos si se pulsa una tecla
+        $("#BusquedaTurno").keyup(function(e){
+                                      
+              //obtenemos el texto introducido en el campo de búsqueda
+              consulta = $("#BusquedaTurno").val();
+              //hace la búsqueda      
+              $.ajax({
+                    type: "POST",
+                    url: "../procesos/tabla-turno.php",
+                    data: "valorBusquedaTurno="+consulta,
+                    dataType: "html",
+                    beforeSend: function(){
+                    //imagen de carga
+                    $("#Mostrar_datos_turno").html("<p align='center'><img src='../img/ico-cargar.gif'/></p>");
+                    },
+                    error: function(){
+                     mensaje_error("Error de peticion");
+                    },
+                    success: function(data){                                                    
+                    $("#Mostrar_datos_turno").empty();
+                    $("#Mostrar_datos_turno").append(data);                                                             
+                    }
+              });                                                                         
+        });                                                     
+});             
+</script>
+</header>
+<body>
+<table border="0" class="estilo_tabla_buscar">
+  <tr>
+    <td>
+      <label class="texto-buscar">Buscar: </label>&nbsp;
+      <input type="text" id="BusquedaTurno" style="width:30%;" maxlength="40" autocomplete="off"/>
+    </td>
+  </tr>
+</table>
+      <div id="Mostrar_datos_turno"></div>
+</body>
+</html>

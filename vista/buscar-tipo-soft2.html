@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<header>
+<meta charset="utf-8">
+
+<script>
+$(document).ready(function(){
+          
+         $("#Mostrar_datos_tipo_software").load('procesos-php/tipo_software_mostrar.php');//Cargar datos desde la base de datos
+         mayuscula("input#Busqueda_tiposoft");//Convertir en mayuscula
+         texto_fondo("#Busqueda_tiposoft", "Ej: Web");//Colocar texto de fondo
+         entrada_raton('#Busqueda_tiposoft');//Evento que se ejecuta al entrar el mouse adentro
+         solo_letras('#Busqueda_tiposoft');//Validar para solo letras
+
+        var consulta;
+        //hacemos focus al campo de búsqueda
+        $("#Busqueda_tiposoft").focus();
+                                                                                                     
+        //comprobamos si se pulsa una tecla
+        $("#Busqueda_tiposoft").keyup(function(e){
+                                      
+              //obtenemos el texto introducido en el campo de búsqueda
+              consulta = $("#Busqueda_tiposoft").val();
+              //hace la búsqueda      
+              $.ajax({
+                    type: "POST",
+                    url: "procesos-php/tipo_software_mostrar.php",
+                    data: "valorBusquedaTipoSoft="+consulta,
+                    dataType: "html",
+                    beforeSend: function(){
+                    //imagen de carga
+                    $("#Mostrar_datos_tipo_software").html("<p align='center'><img src='img/ico-cargando.gif'/></p>");
+                    },
+                    error: function(){
+                     mensaje_error("Error de peticion");
+                    },
+                    success: function(data){                                                    
+                    $("#Mostrar_datos_tipo_software").empty();
+                    $("#Mostrar_datos_tipo_software").append(data);                                                             
+                    }
+              });                                                                         
+        });                                                     
+});             
+</script>
+</header>
+<body>
+<table border="0" class="estilo_tabla_buscar">
+  <tr>
+    <td>
+      <label class="texto-buscar">Buscar tipo de software:</label>&nbsp;
+      <input type="text" id="Busqueda_tiposoft" style="width:60%;" maxlength="50" autocomplete="off"/>
+    </td>
+  </tr>
+</table>
+      <div id="Mostrar_datos_tipo_software"></div>
+</body>
+</html>

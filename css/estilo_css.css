@@ -1,0 +1,1117 @@
+*{/*Borrar marenes del navegador por defecto*/
+    margin: 0;
+    padding: 0;
+}
+
+/*01-ASPECTO DEL DIV CONTENEDOR GENERAL DE LA APLICACIÓN WEB (DIV PADRE)-----------------*/
+#contenedor-principal{
+   width: 100%;
+   max-width: 1200px;
+   min-width:320px;
+   margin:0 auto;
+   background-color: #ffffff;/*Color de fondo*/
+}
+/*02-CAJA_CONTENEDOR_DE_MODULOS--------------------------------------------------------*/
+#contenedor-modulo{
+    width: 100%;
+    margin:0 auto;   
+    overflow: auto;/*Esto es para que se genere un scroll de forma automática*/
+    height: auto!important;/*para generar automáticamente la altura del DIV según su contenido*/
+    background-color: transparent;
+}
+/*03-BANNER----------------------------------------------*/
+.Banner{
+    width: 100%; /*100% para que ocupe todo el ancho del navegador*/
+    height:90px;
+    top: 0; /*El valor 0 indica que va a quedar arriba de todo*/
+    left: 0; /*Para que el menu se ubique siempre en la parte izquierda de la pantalla*/
+}
+
+/*04-************************DESARROLLO DEL MENU DE MÓDULOS-ESTILO DEL MENÚ ****************/
+ul#menu {
+    display:inline-block;/*Con esto definimos que el orden de nuestro menú sera horizontal y no vertical */
+    width:100%;
+    margin:0px auto;
+    padding:0;/*Ubicación de los módulos en el menu*/
+    background-color:#055377;/*este color es para el fondo del menu #055377 #055377*/
+    font-family: "Arial", serif;/*tipo de letra de los módulos*/
+    border-bottom: solid 4px #283747; /*color que esta debajo del nav*/
+}
+ul#menu,ul#menu ul {
+    list-style:none;
+    margin:0;
+}
+
+ul#menu .subs {
+    display:none;
+    float:left;
+    left:0;
+    padding:0 1px 1px;/*estilo para pegar los sub-menus hijos al sub-menu padre*/
+    position:absolute;
+    top:100%;
+    width:auto;/*Longitud de la lista desplegable automatico, a medida que se vaya ingresando valor esto se expande*/
+
+}
+ul#menu li:hover>* {
+    display:block;
+}
+ul#menu li:hover {
+    position:relative;
+}
+ul#menu ul .subs {
+    left:100%;
+    position:absolute;
+    top: 5px;/*estilo para mostrar el sub-menu*/
+
+}
+ul#menu ul {
+    padding:0 0px 0px;
+}
+ul#menu .col {
+    float:left;
+    width:100%;
+}
+ul#menu li {
+    display:block;
+    float:left;
+    font-size:0;
+    white-space:nowrap;
+}
+ul#menu>li,ul#menu li {
+    margin:0 0 0 5px;
+}
+ul#menu ul>li {
+    margin:5px 0 0;
+    background-color: #055377;/*Color de fondo de cada sub-menu*/
+    height:40px;/*Altura de la barra de módulos*/
+
+}
+ul#menu a:active,ul#menu a:focus {
+    outline-style:none;
+}
+ul#menu a {
+    color: white;
+    text-decoration:none;
+    display:block;
+    font-size:13px;/*Tamaño de las letras de los nombres de los módulos*/
+    padding:10px 20px;
+    text-align:left;
+}
+ul#menu ul li {
+    float:none;
+    margin:2px 0 0;/*estilo para separar a los sub-modulos*/
+}
+ul#menu ul a {
+    color:  white;/*Color de los nombres de cada sub-módulo*/
+    font-size:12px;/*Tamaño de las letras de los nombres de cada sub-módulo*/
+    font-family: "Arial", serif;/*tipo de letra de los sub-módulos*/
+    font-weight:normal;
+}
+ul#menu li:hover>a {
+  text-decoration:none;
+  background-color:#024959;/*fondo de la lista desplegable #024959*/
+
+}
+ul#menu img {
+    border:none;
+    margin-right:20px;
+    vertical-align:middle;
+}
+ul#menu span {
+    background-position:right center;
+    background-repeat:no-repeat;
+    display:block;
+    overflow:visible;
+    padding-right:0;
+}
+ul#menu ul span {
+    padding-right:20px;
+}
+ul#menu ul li:hover>a {/*Propiedades de la lista desplegable*/
+    border-color:#444;
+    color: white;/*color de las textos, nombres de los modulos*/
+    font-size:12px;/*tamaño de los nombres de los sub-modulos al pasar el muse por encima*/
+    text-decoration:none;
+    text-shadow:#fff 0 0 0;
+    height:20px;/*Altura de la barra de módulos*/  
+
+    cursor: pointer;
+}
+ul#menu > li >a {/*Altura del menú de módulos*/
+    background-color:transparent;/*este estilo lo ponemos transparente para que se vea el colo de fondo*/
+    height:40px;/*Altura de la barra de módulos*/
+    line-height:40px;/*Altura de los nombres de los módulos*/
+}
+.efecto_modulo{
+  text-decoration:none;
+  background-color:#024959;/*fondo de la lista desplegable #024959*/
+  background: linear-gradient(top, #024959, #024959);/*fondo de la lista desplegable*/
+  background: -moz-linear-gradient(top, #024959, #024959);/*fondo de la lista desplegable*/
+  background: -webkit-linear-gradient(top, #024959, #024959);/*fondo de la lista desplegable*/
+  background: -o-linear-gradient(top, #024959, #024959);/*fondo de la lista desplegable*/
+
+}
+/*05-FOOTER---------------------------------------------------------------------*/
+footer{
+   background-color:#f7f7f7;
+   width: 100%;
+   height: auto;
+   font-family: "Arial", serif;
+   font-size:12px;
+   font-weight: normal;
+   color: #055377;
+   text-align:center;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   margin-top: 5px;
+   margin-bottom: 5px;
+}
+/*06-SCROLLBARS PARA DIFERENTES NAVEGADORES--------------------------*/
+/********************************************FIREFOX********************************************/
+::-moz-scrollbar-track
+{
+    -moz-box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    background-color: transparent;/*Este color es para el fondo del scroll*/
+}
+
+::-moz-scrollbar
+{
+    width: 8px;/*Ancho del scroll vertical*/
+    height: 8px;/*Altura del scroll horizontal*/
+    background-color: transparent;/*Este color es para el fondo del scroll*/
+}
+::-moz-scrollbar-thumb
+{
+    border-radius: 8px;
+    -moz-box-shadow: inset 0 0 20px rgba(0,0,0,.3);
+    background-color: #DDDDDD;/*Este color es para el scroll-silver*/
+}
+/*******************************************CHROME********************************************/
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    background-color: transparent;/*Este color es para el fondo del scroll*/
+}
+::-webkit-scrollbar
+{
+    width: 8px;/*Ancho del scroll vertical*/
+    height: 8px;/*Altura del scroll horizontal*/
+    background-color: transparent;/*Este color es para el fondo del scroll*/
+}
+::-webkit-scrollbar-thumb
+{
+    border-radius: 8px;
+    -webkit-box-shadow: inset 0 0 20px rgba(0,0,0,.5);
+    background-color: #DDDDDD;/*Este color es para el scroll-silver*/
+
+}
+::-webkit-scrollbar-button{ 
+     width: 12px;/*Esto es para mostrar el scroll como si estuviera dentro de un boton*/
+ }
+/*
+::-webkit-scrollbar                { /* 1  }*/
+/*::-webkit-scrollbar-button       { /* 2  }
+/*::-webkit-scrollbar-track        { /* 3  }
+/*::-webkit-scrollbar-track-piece  { /* 4  }
+/*::-webkit-scrollbar-thumb        { /* 5  }
+/*::-webkit-scrollbar-corner       { /* 6  }
+/*::-webkit-resizer                { /* 7  }
+html{
+    overflow-y:hidden;/*Ocultar Barra vertical*/
+    /*overflow-x:hidden;/*Ocultar Barra horizontal*/
+/*}
+*/
+/*07-ASPECTO GENERAL DE LAS LETRAS DE LA APLICACIÓN-------------------------------*/
+label{
+    font-family: "Arial", serif;
+    font-size:13px;
+    font-weight: normal;
+    color: black;
+    padding-top: 10px;
+}
+
+/*08-DAR ESTILO A LOS FORMULARIOS-CAMPOS, LISTA DESPLEGABLE, BOTONES--------------------------*/
+/*estilos visuales elementos de formulario*/
+  input
+  {
+  border: 1px solid #DBE1EB;
+  font-size: 10pt;
+  font-family: Arial, Verdana;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  background: linear-gradient(left, #FF6347, #FF6347);
+  background: -moz-linear-gradient(left, #FFFFFF, #F7F9FA);
+  background: -webkit-linear-gradient(left, #FFFFFF, #F7F9FA);
+  background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);
+  color: #2E3133;/*Color de las letras internas*/
+  }
+  input[type="text"]:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0 none;
+  }
+  input[type="password"]:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0 none;
+  }
+  select
+  {
+  border: 1px solid #DBE1EB;
+  font-size: 10pt;
+  font-family: Arial, Verdana;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+   background-color: #E9E7E7;
+  color: #2E3133;/*Color de las letras internas*/
+  }
+  select:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0 none;
+}
+
+
+
+
+
+
+
+
+
+
+/*09-ESTILO PARA LOS RADIO BUTTON--------------------------*/
+input[type=radio].css-checkbox{
+    display: none;
+}
+input[type=radio].css-checkbox + label.css-label{
+    padding-left:20px;/*separar el radio del texto--------------------------*/
+    height: 8px;/*altura del radio button--------------------------*/
+    display: inline-block;
+    line-height: 0px;/*altura del texto--------------------------*/
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-top:8px;/*separar el radio button del contenedor de la parte superior-----*/
+    margin-right: 10px;
+}
+input[type=radio].css-checkbox:checked + label.css-label{
+    background-position: 0 -18px;
+}
+label.css-label{
+
+    font-family: "Arial", serif;
+    font-size:12px;
+    font-weight: normal;
+    color: black;
+    background-image: url(../img/icono-radio.png);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select:none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+input[type=radio]:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0 none;
+    -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
+    -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
+    box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
+}
+/*10-SEPARADOR------------------------------*/
+hr { 
+    border-top: 1px dotted #8c8b8b;
+    margin-top: 15px;
+    margin-bottom: 15px;
+} 
+
+/*34-ASPECTO GENERAL DE LOS BOTONES DE LA APLICACIÓN------------------------------*/
+  button
+  {
+  cursor: pointer;
+  border: 0px solid #DBE1EB;
+  font-size: 10pt;
+  font-family: Arial, Verdana;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  color: #055377;/*Color de las letras internas*/
+  }
+  button:hover{
+  background: linear-gradient(top, #FF6347, #FF6347);
+  background: -moz-linear-gradient(top, silver, #F7F9FA);
+  background: -webkit-linear-gradient(top, silver, #F7F9FA);
+  background: -o-linear-gradient(top, silver, #F7F9FA);
+  }
+  button:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0 none;
+    -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
+    -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
+    box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
+}
+
+
+
+
+
+/*================================================DISEÑO DE TABLAS================================================*/
+.contenedor-tabla
+{
+    width: 100%;
+    overflow-y: auto;
+    overflow-x:hidden;
+    background-color: transparent;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+/*12-ASPECTO GENERAL DE LAS TABLAS(TABLE) DE LA APLICACIÓN---------------------------------------------------------------------*/
+.tabla{
+    width: 100%;
+    border-spacing:6px;
+    overflow-x:hidden;
+}
+.tabla tr td {
+    vertical-align: top; /*Colocar siempre el contenido de las TD encima - parte superior*/  
+}
+
+/*16-ESTILO PARA LAS TABLAS GENERALES DE LA APLICACION--------------------------------*/
+.tabla_general{ /*estilo general*/
+
+    font-family: "Arial", serif;/*tipo de letra*/
+    font-size: 12px;/*Tamaño de las letras del fondo de la tabla*/
+    width: 100%;/*ancho de la tabla*/
+    text-align: left;/*alineacion de los textos*/
+    border-collapse: collapse;/*eliminar espacios entre columnas*/
+    color: #055377;
+    overflow-x:hidden;
+     }
+.tabla_general th {/*titulos*/
+
+    font-size: 12px;
+    font-weight: normal;
+    padding: 8px;
+    background: #EAECEE;/*fondo de titulos*/
+    color:#055377;/*color de los textos de los titulos*/
+
+ }
+.tabla_general td {/*filas*/
+    background-color: #f7f7f7;
+     border-bottom: 1px solid #fff;
+     border-top: 1px solid transparent;
+    padding: 8px;
+  }
+.tabla_general tr:hover td {
+ background-color:#D0D3D4;
+ color:#2E4053;
+}
+/*15-ESTILO DE LA TABLA BUSCAR PERSONA--------------------------------------------------------*/
+.estilo_tabla_buscar{
+  height: 60px;
+  width: 100%;
+  background-color: #f7f7f7;
+
+}
+ .texto-buscar
+  {
+  font-size: 10pt;
+  font-family: Arial, Verdana;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  color: #055377;/*Color de las letras internas*/
+  background-color: #f7f7f7;
+  /* border: 1px solid #055377;*/
+  }
+
+#contenedor-accion-recursos{
+   background-color:transparent; 
+   text-align:center;
+   padding: 4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*11-DIV CONTENEDOR DE TABLAS CON SCROLL--------------------------*/
+  .Estilo_DivContTablaScroll{
+     overflow: auto;
+     width: 100%;/*ancho*/
+     background-color: white;
+     border-radius: 5px;
+   }
+
+   .Color_FondotitulosTabla{
+     background-color:  #055377;
+     font-family: "Arial", serif;
+     font-size:12px;
+     font-weight: normal;
+     color: white;
+     text-align:center;
+   }
+
+
+
+
+
+
+
+
+
+
+  .DivTablaScrollMod1{
+     overflow: auto;
+     width: 100%;/*ancho*/
+     background-color: white;
+     border-radius: 5px;
+   }
+/*-13-PERMITE RESALTAR LAS FILAS DE LAS TABLAS AL PASAR EL MOUSE POR ENCIMA-*/
+.sombra-mouse-tabla {
+  background-color: silver;
+}
+/*14-CAJA CONTENEDOR DE TABLAS UNIDAS--------------------------------------------------------*/
+.ContenedorTablasUnidas{
+    width: 100%;
+    margin:0 auto;
+    background-color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*17-ESTILO ESPECIFICO PARA LA TABLA CREACION HORARIO-------*/
+.tabla_horario{ /*estilo general*/
+
+    font-family: "Arial", serif;/*tipo de letra*/
+    font-size: 12px;/*Tamaño de las letras del fondo de la tabla*/
+    width: 100%;/*ancho de la tabla*/
+    text-align: left;/*alineacion de los textos*/
+    border-collapse: collapse;/*eliminar espacios entre columnas*/
+    color: #055377;
+    border: 0; 
+     }
+
+.tabla_horario th {/*titulos*/
+
+    font-size: 12px;
+    font-weight: normal;
+    padding: 8px;
+    background: #055377;/*fondo de titulos*/
+    color: white;/*color de los textos de los titulos*/
+ }
+
+.tabla_horario td {/*filas*/
+
+    background-color: #f2f2f2;
+     border-bottom: 1px solid #fff;
+     border-top: 1px solid transparent;
+    padding: 8px;
+  }
+/*================================================DISEÑO DE TABLAS================================================*/
+
+/*18-DIV CONTENEDOR DE TITULO CON FONDO AZUL Y TIPOGRAFIA COLOR BLANCO-----*/
+.titulo-modulo{
+   /*border: 1px solid #a1a1a1;*/
+   width: auto;
+   background-color:#f7f7f7; 
+   font-family: "Arial", serif;
+   font-size:12px;
+   font-weight: normal;
+   color: #055377;
+   text-align:center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/*19-PARA CAMBIAR EL ASPECTO DEL BOTON ENVIAR SUBMIT DE LOS FORMULARIOS AL PASAR EL MOUSE POR ENCIMA-*/
+.seleccionado {
+
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #055377;
+  background: -webkit-gradient(linear, left top, left bottom, from(#055377), to(#50911e));
+  background: -webkit-linear-gradient(top, #055377, #50911e);
+  background: -moz-linear-gradient(top, #055377, #50911e);
+  background: -ms-linear-gradient(top, #055377, #50911e); 
+  background: -o-linear-gradient(top, #055377, #50911e);
+  background: linear-gradient(top, #055377, #50911e);
+  border: 1px solid #055377;
+  border-bottom: 1px solid #055377;
+  border-radius: 3px;
+
+ -webkit-border-radius: 3px;
+ -moz-border-radius: 3px; 
+ -ms-border-radius: 3px;
+ -o-border-radius: 3px;
+  box-shadow: inset 0 1px 0 0 #055377;
+ -webkit-box-shadow: 0 1px 0 0 #055377 inset;
+ -moz-box-shadow: 0 1px 0 0 #055377 inset;
+ -ms-box-shadow: 0 1px 0 0 #055377 inset;
+ -o-box-shadow: 0 1px 0 0 #055377 inset; 
+
+  color: white;
+  font-family: "Arial", serif;
+  font-size:12px;
+  text-align: center; 
+  text-shadow: 0 -1px 0 #055377;
+}
+
+/*-20-ESTA CLASE HACE QUE CUANDO UN VALOR DE CAMPO DE TEXTO QUE SE ESTA INGRESANDO YA EXISTE EN LA BDD
+SE COLOQUE UN BORDE ROJO ADVIRTIENDO AL USUARIO QUE ESE VALOR YA EXISTE-*/
+.color_f{
+  border: 1px solid red;
+}
+
+/*-21-PERMITE RESALTAR LAS FILAS DE LAS TABLAS AL PASAR EL MOUSE POR ENCIMA-*/
+.existe-persona{
+  text-align: center;
+  border: 1px solid #DBE1EB;
+  font-size: 10pt;
+  font-family: Arial, Verdana;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  background: linear-gradient(top, green, green);
+  background: -moz-linear-gradient(top, green, white);
+  background: -webkit-linear-gradient(top, green, white);
+  background: -o-linear-gradient(top, green, white);
+  color: #FFFFFF;/*Color de las letras internas*/
+}
+.existe-persona:focus
+  {
+  color: #FFFFFF;/*Color de las letras internas*/
+  border-color: #055377;/*Color del borde*/
+  }
+/*-22-PERMITE RESALTAR LAS FILAS DE LAS TABLAS AL PASAR EL MOUSE POR ENCIMA-*/
+.no-existe-persona{
+  text-align: center;
+  border: 1px solid #DBE1EB;
+  font-size: 10pt;
+  font-family: Arial, Verdana;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  background: linear-gradient(top, red, red);
+  background: -moz-linear-gradient(top, red, white);
+  background: -webkit-linear-gradient(top, red, white);
+  background: -o-linear-gradient(top, red, white);
+  color: #FFFFFF;/*Color de las letras internas*/
+}
+.no-existe-persona:focus
+  {
+  color: #FFFFFF;/*Color de las letras internas*/
+  border-color: #055377;/*Color del borde*/
+  }
+
+
+
+ 
+
+/*23-ESTILO DE LA LETRA AVISO BUSQUEDA DE PERSONA ENCONTRADA-------------------------------------*/
+.aviso_busqueda{
+    color:  #055377;
+    font-family: "Arial", serif;/*tipo de letra de los módulos*/
+    font-size: 14px;
+}
+/*24-ESTILO DE LA LETRA AVISO BUSQUEDA DE PERSONA NO ENCONTRADA--------------------------------*/
+.aviso_busqueda_no{
+    color:  red;
+    font-family: "Arial", serif;/*tipo de letra de los módulos*/
+    font-size: 14px;
+}
+
+/*25-CLASE QUE LE DA ESTILO AL BOTON DE SUBIR DE LA APLICACION-----------*/
+.ir-arriba {
+
+  display:none;
+  padding:10px;
+  background:#024959;/*Color de fondo*/
+
+  font-size:20px;
+  text-align: center;
+  color:#fff;/*Color de texto*/
+  cursor:pointer;
+  position: fixed;
+  bottom:20px;
+  right:20px;
+  width: 20px;
+  height: 20px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+
+    -webkit-box-shadow: 0px 0px 10px #000; 
+    -moz-box-shadow: 0px 0px 10px #000; 
+    -ms-box-shadow: 0px 0px 10px #000; 
+    -o-box-shadow: 0px 0px 10px #000;
+
+}
+
+/*26-ESTILO ESPECIFICO PARA LAS ETIQUETAS LABEL MODULO GESTION HORARIOS-------*/
+.tipografia_horario_of{
+
+     width: 50%;
+     color: #FFF;/*color de los textos de los titulos*/
+     font-size: 14px;
+     font-weight: normal;
+     text-align: left;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  background-color: #055377;
+
+  border-radius: 10px 10px 0px 0px;
+  -moz-border-radius: 10px 10px 0px 0px;
+  -webkit-border-radius: 10px 10px 0px 0px;
+  -o-border-radius: 10px 10px 0px 0px;
+}
+.tipografia_horario_on{
+     width: 50%;
+     color: #FFF;/*color de los textos de los titulos*/
+     font-size: 14px;
+     font-weight: normal;
+     text-align: left;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  background-color: green;
+  border-radius: 10px 10px 0px 0px;
+  -moz-border-radius: 10px 10px 0px 0px;
+  -webkit-border-radius: 10px 10px 0px 0px;
+  -o-border-radius: 10px 10px 0px 0px;
+}
+
+/*27-ESTILO ESPECIFICO PARA MOSTRAR EL PERIODO DEL MODULO GESTION HORARIOS--*/
+.desc_periodo{
+
+     width: 95%;
+     color: #055377;/*color de los textos de los titulos*/
+     font-size: 18px;
+     font-weight: normal;
+     text-align: center;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+   background-color: silver;
+  background: linear-gradient(top, silver, silver);
+  background: -moz-linear-gradient(top, silver, white);
+  background: -webkit-linear-gradient(top, silver, white);
+  background: -o-linear-gradient(top, silver, white);
+}
+/*28-ESTILO ESPECIFICO PARA SOMBREAR EL MODULO SELECCIONADO--*/
+
+
+
+/*29-ESTILO UNICO AL LOGIN USUARIO------------------------------*/
+#contenedor-login{
+  width: 30%;
+  height: auto;
+  padding: 20px;
+  margin: 0 auto;/*Centrado*/
+  border: solid 1px #ABB2B9;
+   border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -o-border-radius: 10px 10px 10px 10px;
+}
+#login-estilo{
+  width: 95%;
+  height: auto;
+  padding: 10px;
+  margin: 0 auto;/*Centrado*/
+   border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -o-border-radius: 10px 10px 10px 10px;
+}
+#login-estilo table{
+  width: 100%;
+  border-spacing: 10px;
+}
+#login-estilo label{
+     color: #055377;/*color de los textos*/
+     font-family: "Arial", serif;/*tipo de letra*/
+     font-size: 14px;
+     font-weight: normal;
+     text-align: left;
+
+}
+#login-estilo input{
+  width: 90%;
+  text-align: center;
+}
+#login-estilo button{
+ 
+    cursor: pointer;
+}
+
+/*30-CLASE FIXED PARA EL NAV------------------------------*/
+ .fixed{
+    position:fixed;
+    top:0;
+    height:40px;
+    left: 0; /*Para que el menu se ubique siempre en la parte izquierda de la pantalla*/
+    width: 100%; /*100% para que ocupe todo el ancho del navegador*/
+  }
+/*31-CLASE FIXED PARA LIMPIAR LAS FUNCIONES DEL NAV------------------------------*/
+/* Clearfix */
+.clear:before, .clear:after {
+    content: " ";
+    display: table;
+}
+
+.clear:after {
+    clear: both;
+}
+
+.clear {
+    *zoom: 1;
+}
+
+a#pull {
+    display: none;
+}
+
+/*32-@MEDIA PARA LAS FUNCIONES DEL NAV--------*/
+@media only screen and (max-width : 800px) {
+    nav {
+        border-bottom: 0;
+        height: auto;
+        width: 100%;
+    }
+
+    nav ul {
+        display: none;
+        height: auto;
+        width: 100%;
+    }
+
+    nav li {
+        width: 80%;
+        float: left;
+        position: relative;
+    }
+
+    nav ul li{
+          display: block;/*que abarque todo lo que pueda de ancho*/
+    float: none;
+    border-bottom:1px solid rgba(255, 255, 255, .3);
+    }
+    nav a {
+        text-align: left;
+        width: 100%;
+        text-indent: 25px;
+        text-decoration: none;
+    }
+
+    nav a#pull {
+        display: block;
+        background-color: #055377;/*color del menu que aparece cuando haya responsive designe*/
+        width: auto;
+        position: relative;
+        padding:10px 10px;
+        color: white;
+        font-size:13px;
+        font-family: "Arial", serif;/*tipo de letra de los módulos*/
+    }
+
+    nav a#pull:after {
+        content:"";
+        background: url('../img/ico-nav.png') no-repeat;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        position: absolute;
+        right: 15px;
+        top: 10px;
+    }
+}
+/*33-DISEÑO PARA FONDO DE MENSAJES DE ERROR, ÉXITO O ADVERTENCIA EN LA APLICACIÓN------------------------------*/
+.fondo-mensaje{
+   width: auto;
+   height: 20px;
+   background-color: transparent; 
+   font-family: "Arial", serif;
+   font-size:15px;
+   font-weight: normal;
+   text-align:center;
+   padding:3px;
+}
+
+/*35-DIV CONTENEDOR DE BOTONES----------------------------------------------*/
+.contenedor-boton{
+   width: auto;
+   padding: 4px;
+   background-color: transparent;
+   text-align: center;
+}
+/*36-ASPECTO DEL BOTON OPCIONES------------------------------*/
+.boton-opciones { 
+  height: auto!important;
+  width: auto;
+  font-family: "Arial", serif;/*tipo de letra*/
+  font-size: 12px;
+  font-weight: normal;
+  text-align: center;
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  /*background: rgb(19, 143, 247);#055377*/
+  background: transparent;
+  border: 2px solid #055377;
+  color: #055377;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  text-decoration:none;
+} 
+.boton-opciones:hover { 
+  /*outline:2px solid green; /* No soportado por IE/Win ^_^ */
+  background: linear-gradient(top, #FF6347, #FF6347);
+  background: -moz-linear-gradient(top, silver, #F7F9FA);
+  background: -webkit-linear-gradient(top, silver, #F7F9FA);
+  background: -o-linear-gradient(top, silver, #F7F9FA);
+  }
+
+/*37-Contenedor donde se pueden mostrar los datos extraidos desde la base de datos*/
+.contenedor-datos{
+
+   height: 270px;/*Altura establecida*/
+   background-color: transparent;
+   padding-top: 4px;
+   padding-bottom: 3px;
+}
+
+/*38-Centrar el texto para el campo descripcion de periodo-*/
+#form_periodo input{
+  text-align: center;
+}
+
+/*39-VENTANAS MODALES DE LA APLICACION------------------------------*/
+.caja{
+      width: 100%;
+      height: 100%;
+      color: #FFFFFF;
+      position: fixed;
+      background-image: url(../img/modal.png);
+      top: 0;
+      left: 0;
+      display: none;
+}
+.caja_contenedor{
+      width: 100%;
+      height: auto;
+      padding: 0px;
+      background-color: #FFF;
+      color: #666;/*Gris*/
+      top: 6%;
+      left: 0%;
+      position: absolute;
+
+}
+.caja_cerrar{
+      width: 10px;
+      height: 10px;
+      cursor: pointer;
+      color: red;
+      text-align: center;
+      float:right;
+      padding-top: 3px;
+      padding-right: 4px;
+      padding-left: 4px;
+      padding-bottom: 6px;
+      margin: 10px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+     font-family: "Arial", serif;/*tipo de letra*/
+     font-size: 12px;/*Tamaño de las letras del fondo de la tabla*/ 
+    -webkit-box-shadow: 0px 0px 0px 3px #E6E6E6;
+    -moz-box-shadow: 0px 0px 0px 3px #E6E6E6;
+    -ms-box-shadow: 0px 0px 0px 3px #E6E6E6;
+    -o-box-shadow: 0px 0px 0px 3px #E6E6E6;
+}
+.caja_cerrar:hover{      
+    -webkit-box-shadow: 0px 0px 0px 3px red;
+    -moz-box-shadow: 0px 0px 0px 3px red;
+    -ms-box-shadow: 0px 0px 0px 3px red;
+    -o-box-shadow: 0px 0px 0px 3px red;
+}
+.agregar{
+      cursor: pointer;
+      width: 10px;
+      height: 10px;
+      color: green;
+      text-align: center;
+      padding-top: 3px;
+      padding-right: 6px;
+      padding-left: 6px;
+      padding-bottom: 10px;
+      margin-top: 8px;
+      margin-left:5px;
+      margin-right:5px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+     font-family: "Arial";/*tipo de letra*/
+     font-size: 100%;/*Tamaño de las letras del fondo de la tabla*/ 
+    -webkit-box-shadow: 0px 0px 0px 3px #E6E6E6;
+    -moz-box-shadow: 0px 0px 0px 3px #E6E6E6;
+    -ms-box-shadow: 0px 0px 0px 3px #E6E6E6;
+    -o-box-shadow: 0px 0px 0px 3px #E6E6E6;
+}
+.agregar:hover{      
+    -webkit-box-shadow: 0px 0px 0px 3px green;
+    -moz-box-shadow: 0px 0px 0px 3px green;
+    -ms-box-shadow: 0px 0px 0px 3px green;
+    -o-box-shadow: 0px 0px 0px 3px green;
+}
+#mostrar_persona{
+  cursor: pointer;
+  width: 20%;
+  height: auto!important;
+  font-family: "Arial", serif;/*tipo de letra*/
+  font-size: 12px;
+  font-weight: normal;
+  text-align: center;
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  /*background: rgb(19, 143, 247);#055377*/
+  background: transparent;
+  border: 1px solid rgba(82, 168, 236, 0.8);
+  color: #055377;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  text-decoration:none;
+
+}
+#mostrar_persona:hover{
+    color: #FFFFFF;/*Color de las letras internas*/
+    background-color: #024959;
+    border: 1px solid #FFFFFF;
+}
+
+
+
+
+/*< = =========================aspecto pantalla carga academica=========================  = >*/
+.titulo-listar-docente{
+  cursor: pointer;
+   width: auto;
+   background:transparent; 
+   font-family: "Arial", serif;
+   font-size:12px;
+   font-weight: normal;
+   color: #055377;
+   text-align:left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  
+
+}
+.datos-docente{
+    width: 100%;
+    border-spacing:6px;
+    overflow-x:hidden;
+    font-family: "Arial", serif;/*tipo de letra*/
+    font-size: 15px;
+    font-weight: normal;
+    color: #055377;
+}
+.datos-docente tr td {
+    vertical-align: top; /*Colocar siempre el contenido de las TD encima - parte superior*/  
+}
+
+
+
+

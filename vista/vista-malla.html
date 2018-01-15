@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+   <meta charset="utf-8"/>
+          <link rel="stylesheet" href="../css/estilo_css.css" />
+     <script type="text/javascript" src="../lib-jQuery/jquery-3.1.0.js"></script>   
+          <script type="text/javascript" src="../js/herramientas.js"></script>   
+          <script type="text/javascript" src="../js/validar-uc.js"></script> 
+          <script type="text/javascript" src="../js/funcion-uc.js"></script>         
+          <script type="text/javascript" src="../js/aspecto-elementos.js"></script>
+        <!-- *****Función para eliminar el parpadeo de la carga de esta página*****-->
+        <script type="text/javascript">
+        $(document).ready(function(){ $('body').hide(); $('body').fadeIn(0);
+        of_mod($("#proyectos"));
+        of_mod($("#horarios"));
+        of_mod($("#usuarios"));
+        on_mod($("#panel-control"));
+
+
+
+
+
+
+                 $("#mostrar_malla_curricular").load('../vista/buscar-uc.html');
+                 $.ajax({ type: "POST", url: "../procesos/mostrar-mod.php", success: function(response){
+                 $('.selector-modalidad select').html(response).fadeIn();
+                 $('.selector-modalidad-modal select').html(response).fadeIn();  
+                 }
+                  });
+                 $.ajax({ type: "POST", url: "../procesos/mostrar-version.php", success: function(response){
+                 $('.selector-version-uc select').html(response).fadeIn(); 
+                 $('.selector-version-uc-modal select').html(response).fadeIn(); 
+                 }
+                 });
+                 $.ajax({ type: "POST", url: "../procesos/mostrar-tramo.php", success: function(response){
+                 $('.selector-tramo_inicio select').html(response).fadeIn();  
+                 }
+                 });
+                 $.ajax({ type: "POST", url: "../procesos/mostrar-tramo.php", success: function(response){
+                 $('.selector-tramo_final select').html(response).fadeIn();  
+                 }
+                 });
+                 $.ajax({ type: "POST", url: "../procesos/mostrar-tipouc.php", success: function(response){
+                 $('.selector-tipo-uc select').html(response).fadeIn();  
+               }
+             });
+         });/*CIERRE*/
+        </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>  
+  <body>
+        <div>
+        <input type="text"  maxlength="20" id="cod_uc_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+        </div>
+    
+   <div class="titulo-modulo">Panel de control - Registro de la Malla curricular</div>
+     <div class="contenedor-tabla">
+       <form id="form_malla_curricular" method="POST" autocomplete="off">
+        <table class="tabla" border="0" >
+         <tr>
+           <td style="width:50%;">
+             <label>Modalidad</label><br>
+             <div class="selector-modalidad">
+             <select style="width:100%;" id="id_modalidad"></select>
+             </div>
+             </td>
+             <td style="width:50%;">
+             <label>Versi&oacuten Malla</label><br>
+             <div class="selector-version-uc">
+             <select style="width:100%;" id="id_version_uc"></select>
+             </div>
+             </td>
+         </tr>
+       </table>
+       <table class="tabla" border="0">
+           <tr>
+           <td style="width:15%;">
+	         <label>Código</label><br>
+           <input style="width:90%;" type="text"  maxlength="20" id="cod_unidadc">
+           </td>
+           <td style="width:30%;">
+	         <label>Descripción</label><br>
+           <input style="width:95%;" type="text"  maxlength="150" id="desc_unidadc">
+           </td>
+           <td style="width:5%;">
+           <label>Horas</label><br>
+           <input style="width:80%;" maxlength="2" type="text"  id="horas_uc">
+           </td>
+           <td style="width:10%;">
+	         <label>Tramo inicio</label><br>
+	         <div class="selector-tramo_inicio">
+		       <select style="width:100%;" id="id_tramoini"></select>
+	         </div>
+           </td>
+           <td style="width:10%;">
+	         <label>Tramo final</label><br>
+	         <div class="selector-tramo_final">
+		       <select style="width:100%;" id="id_tramofin"></select>
+	         </div>
+           </td>
+           <td style="width:14%;">
+	         <label>Tipo</label><br>
+	         <div class="selector-tipo-uc">
+	   	     <select style="width:100%;" id="id_tipouc"></select>
+	         </div>
+           </td>
+           </tr>
+           </table>
+          <div class="contenedor-boton">
+          <button type="submit" id="boton-enviar-uc" >
+          <div id="texto-guardar">Registrar</div>
+          </button>
+         </div>
+        </form>
+      </div>
+       <div class="fondo-mensaje" id="mensaje"></div>
+<!-- *****************************CONTENIDO**************************************** -->
+       <div class="titulo-modulo">Descripci&oacuten de la Malla Curricular</div>
+         <div id="mostrar_malla_curricular"></div>
+<!-- *****************************CONTENIDO**************************************** -->
+<!-- <div onclick="javascript:abrir_modal();" style="cursor:pointer" class="boton-opciones">Opciones</div>
+ -->
+</body>
+</html>

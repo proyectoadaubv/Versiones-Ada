@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<header>
+<meta charset="utf-8">
+<script>
+$(document).ready(function(){
+          
+         $("#Mostrar_datos_tramo").load('../procesos/tabla-tramo.php');//Cargar datos desde la base de datos
+         mayuscula("input#Busqueda_tramo");//Convertir en mayuscula
+         texto_fondo("#Busqueda_tramo", "Ejemplo: 7");//Colocar texto de fondo
+         entrada_raton('#Busqueda_tramo');//Evento que se ejecuta al entrar el mouse adentro
+        solo_numeros('#Busqueda_tramo');
+        var consulta_tramo;
+        //hacemos focus al campo de búsqueda
+        $("#Busqueda_tramo").focus();
+                                                                                                     
+        //comprobamos si se pulsa una tecla
+        $("#Busqueda_tramo").keyup(function(e){
+                                      
+              //obtenemos el texto introducido en el campo de búsqueda
+              consulta_tramo = $("#Busqueda_tramo").val();
+              //hace la búsqueda      
+              $.ajax({
+                    type: "POST",
+                    url: "../procesos/tabla-tramo.php",
+                    data: "valorBusquedaTramo="+consulta_tramo,
+                    dataType: "html",
+                    beforeSend: function(){
+                    //imagen de carga
+                    $("#Mostrar_datos_tramo").html("<p align='center'><img src='../img/ico-cargar.gif'/></p>");
+                    },
+                    error: function(){
+                     mensaje_error("Error de peticion");
+                    },
+                    success: function(data){                                                    
+                    $("#Mostrar_datos_tramo").empty();
+                    $("#Mostrar_datos_tramo").append(data);                                                             
+                    }
+              });                                                                         
+        });                                                     
+});             
+</script>
+</header>
+<body>
+<table border="0" class="estilo_tabla_buscar">
+  <tr>
+    <td>
+      <label class="texto-buscar">Buscar: </label>&nbsp;
+      <input type="text" id="Busqueda_tramo" style="width:30%;" maxlength="2" autocomplete="off"/>
+    </td>
+  </tr>
+</table>
+      <div id="Mostrar_datos_tramo"></div>
+</body>
+</html>

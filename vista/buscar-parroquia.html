@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<header>
+<meta charset="utf-8">
+
+<script>
+$(document).ready(function(){
+          
+         $("#Mostrar_datos_parroquia").load('../procesos/tabla-parroquia.php');//Cargar datos desde la base de datos
+         mayuscula("input#BusquedaParroquia");//Convertir en mayuscula
+         texto_fondo("#BusquedaParroquia", "Ej: San Isidro");//Colocar texto de fondo
+         entrada_raton('#BusquedaParroquia');//Evento que se ejecuta al entrar el mouse adentro
+
+        var consulta;
+        //hacemos focus al campo de búsqueda
+        $("#BusquedaParroquia").focus();
+                                                                                                     
+        //comprobamos si se pulsa una tecla
+        $("#BusquedaParroquia").keyup(function(e){
+                                      
+              //obtenemos el texto introducido en el campo de búsqueda
+              consulta = $("#BusquedaParroquia").val();
+              //hace la búsqueda      
+              $.ajax({
+                    type: "POST",
+                    url: "../procesos/tabla-parroquia.php",
+                    data: "valorBusquedaParroquia="+consulta,
+                    dataType: "html",
+                    beforeSend: function(){
+                    //imagen de carga
+                    $("#Mostrar_datos_parroquia").html("<p align='center'><img src='../img/ico-cargar.gif'/></p>");
+                    },
+                    error: function(){
+                     mensaje_error("Error de peticion");
+                    },
+                    success: function(data){                                                    
+                    $("#Mostrar_datos_parroquia").empty();
+                    $("#Mostrar_datos_parroquia").append(data);                                                             
+                    }
+              });                                                                         
+        });                                                     
+});             
+</script>
+</header>
+<body>
+<table border="0" class="estilo_tabla_buscar">
+  <tr>
+    <td>
+      <label class="texto-buscar">Buscar: </label>&nbsp;
+      <input type="text" id="BusquedaParroquia" style="width:50%;" maxlength="15" autocomplete="off"/>
+    </td>
+  </tr>
+</table>
+      <div id="Mostrar_datos_parroquia"></div>
+</body>
+</html>

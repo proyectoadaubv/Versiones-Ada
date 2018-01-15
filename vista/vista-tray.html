@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+   <meta charset="utf-8"/>
+     <link rel="stylesheet" href="../css/estilo_css.css" />
+     <script type="text/javascript" src="../lib-jQuery/jquery-3.1.0.js"></script>   
+        <script type="text/javascript" src="../js/herramientas.js"></script>   
+        <script type="text/javascript" src="../js/validar-tray.js"></script>  
+        <script type="text/javascript" src="../js/validar-tramo.js"></script>    
+        <script type="text/javascript" src="../js/funcion-tray.js"></script>  
+        <script type="text/javascript" src="../js/funcion-tramo.js"></script>  
+        <script type="text/javascript" src="../js/aspecto-elementos.js"></script>  
+        <!-- *****Función para eliminar el parpadeo de la carga de esta página*****-->
+        <script type="text/javascript">
+        $(document).ready(function(){
+         $('body').hide();
+          $('body').fadeIn(0);
+        of_mod($("#proyectos"));
+        of_mod($("#horarios"));
+        of_mod($("#usuarios"));
+        on_mod($("#panel-control"));
+               $("#mostrar_trayecto").load('../vista/buscar-tray.html');
+               $("#mostrar_tramo").load('../vista/buscar-tramo.html');
+               $.ajax({ type: "POST", url: "../procesos/mostrar-tray.php", success: function(response){
+                $('.selector-trayecto select').html(response).fadeIn();  
+                 }
+           });
+       });
+        </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>  
+<body>
+        <!-- ************************************************************************************** -->
+         <div>
+           <input type="text"  maxlength="20" id="cod_tray_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+           <input type="text"  maxlength="20" id="cod_tram_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+           <input type="text"  maxlength="20" id="desc_tramo_actual" style='display:none;'><!--VARIABLE OCULTA-->
+           <input type="text"  maxlength="20" id="desc_tray_actual" style='display:none;'><!--VARIABLE OCULTA-->
+         </div>
+        <!-- ************************************************************************************** -->
+ <div class="contenedor-tabla">
+   <div class="titulo-modulo">Panel de control - Registro de trayectos y tramos</div>
+   <table class="tabla" border="0">
+     <tr>
+       <td style="width:50%;">
+          <form id="form_tray" autocomplete="off"><!-- *******FORMULARIO TRAYECTO******* -->
+           <center>
+           <label>Ingrese la descripci&oacuten del trayecto</label><br>
+           <input style="width:50%;" type="text" maxlength="3" id="tray-desc">
+           </center>
+          </form><!-- *******CIERRE FORMULARIO TRAYECTO******* -->
+       </td> 
+        <td style="width:25%;">
+       <form id="form_tram" autocomplete="off"><!-- *******FORMULARIO TRAMO******* -->  
+          <label>Seleccionar Trayecto</label><br>
+          <div  class="selector-trayecto">
+          <select style="width:98%;" id="id_trayecto"></select>
+          </div>
+       </form>
+       </td>
+       <td style="width:25%;">
+           <label>Ingrese la descripci&oacuten del tramo</label><br>
+           <input style="width:90%;" type="text"  maxlength="2" id="tram-desc">
+       </td>
+       </tr>
+     <tr>
+       <td>
+          <div class="contenedor-boton">
+          <button type="submit" id="boton-enviar-tray">
+          <div id="texto-guardar-trayecto">Registrar</div>
+          </button>
+          </div>
+       </td>
+       <td colspan="2">
+          <div class="contenedor-boton">
+          <button type="submit" id="boton-enviar-tram">
+          <div id="texto-guardar-tram">Registrar</div>
+          </button>
+          </div>
+       </td>
+     </tr>
+     <tr>
+       <td colspan="3">
+         <div class="fondo-mensaje" id="mensaje"></div>
+       </td>
+     </tr>
+     <tr>
+       <td>
+                  <!-- *****************************CONTENIDO**************************************** -->
+                  <div class="titulo-modulo">Descripci&oacuten del trayecto</div>
+                  <div>
+                  <div id="mostrar_trayecto"></div>
+                  </div>
+       </td>
+       <td colspan="2">
+                  <!-- *****************************CONTENIDO**************************************** -->
+                  <div class="titulo-modulo">Descripci&oacuten del trayecto y tramo</div>
+                  <div>
+                  <div id="mostrar_tramo"></div>
+                  </div>
+       </td>
+     </tr>
+   </table>
+</div>
+
+</body>
+</html>

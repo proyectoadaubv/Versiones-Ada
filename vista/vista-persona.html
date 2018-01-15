@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+        <link rel="stylesheet" href="../css/estilo_css.css" />
+        <link rel="stylesheet" href="../css/pcal.css" />
+        <script type="text/javascript" src="../lib-jQuery/jquery-3.1.0.js"></script>
+        <script type="text/javascript" src="../js/herramientas.js"></script>    
+        <script type="text/javascript" src="../js/aspecto-elementos.js"></script> 
+        <script type="text/javascript" src="../js/validar-persona.js"></script> 
+        <script type="text/javascript" src="../js/pcal.js"></script>
+      <!-- *****Función para eliminar el parpadeo de la carga de esta página*****-->
+     <script type="text/javascript">
+     $(document).ready(function(){  $('body').hide(); $('body').fadeIn(0); 
+        of_mod($("#proyectos"));
+        of_mod($("#horarios"));
+        of_mod($("#proyectos"));
+        of_mod($("#usuarios"));
+        on_mod($("#panel-control"));
+
+        $.ajax({ type: "POST", url: "../procesos/mostrar-tipoper-selct.php", success: function(response){
+        $('.selector-tipo-persona select').html(response).fadeIn(); } });
+         
+        //$.ajax({ type: "POST", url: "../procesos/mostrar-parroquia-selct.php", success: function(response){
+        //$('.selector-parroquia select').html(response).fadeIn(); } });
+
+        $.ajax({ type: "POST", url: "../procesos/mostrar-cargos-selct.php", success: function(response){
+        $('.selector-cargo select').html(response).fadeIn(); } });
+
+        $.ajax({ type: "POST", url: "../procesos/mostrar-profesion-selct.php", success: function(response){
+        $('.selector-profesion select').html(response).fadeIn(); } });
+
+
+        $.ajax({ type: "POST", url: "../procesos/mostrar-estado.php", success: function(response){
+        $('.selector-estado select').html(response).fadeIn(); } });
+
+        $.ajax({ type: "POST", url: "../procesos/mostrar-municipio.php", success: function(response){
+        $('.municipio select').html(response).fadeIn(); } });
+
+
+   });
+     </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   </head>  
+      <body>
+       <!-- ************************************************************************************** -->
+         <div>
+           <input type="text"  maxlength="20" id="cod_persona_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+         </div>
+        <!-- ************************************************************************************** -->
+       <!--== apertura modal calendario ==-->
+        <div class="modal-calendario">
+         <div class="modal_contenedor">
+            <div class="cerrar-calendario">x</div>
+             <table class="tabla-calendario">
+              <tr>
+              <td>
+               <label>Dia</label>
+               <select id="dia"></select>
+              </td>
+              <td>
+               <label>Mes</label>
+               <select id="mes"></select>
+              </td>
+              <td>
+               <label>Año</label>
+               <select id="anio"></select>
+              </td>
+              </tr>
+              <tr>
+              <td colspan="3">
+              <div class="boton-aceptar"></div>
+              </td>
+              </tr>
+             </table>
+         </div>
+        </div>
+       <!--== cierre modal calendario ==-->
+       <div class="titulo-modulo">Panel de control - Formulario persona</div>
+
+        <div class="titulo-modulo">Datos personales</div>
+           <table border="0" class="estilo_tabla_buscar">
+            <tr>
+              <td style="width:40%;">
+                  <label class="texto-buscar">Buscar:</label>
+                <input type="text" maxlength="30" style="width:80%;" id="buscar-persona">
+              </td>
+              <td style="width:60%;">
+                <div id="mostrar-mensaje-buscar"></div>
+              </td>
+            </tr>
+          </table> 
+
+
+       <!--== desarrollo del formulario - registro de persona ==-->
+       <div class="contenedor-tabla"><!--== apertura del contenedor de tablas==-->
+         <form id="form_persona" autocomplete="off" method="POST"><!--== apertura formulario==-->
+         
+         <table class="tabla" border="0">
+         	<tr>
+         		<td style="width:16%;">
+                 <label>Tipo</label><br>
+                   <div class="selector-tipo-persona">
+                   <select style="width:100%;" id="id_tipo_persona"></select>
+                   </div>
+         		</td>
+         		<td style="width:28%;">
+                   <label>C&eacutedula</label><br>
+                   <input type="text" maxlength="10" style="width:90%;" id="cedula">
+         		</td>
+         		<td style="width:28%;">
+                   <label>Nombre</label><br>
+                   <input type="text" maxlength="50" style="width:90%;" id="nombre">
+         		</td>
+         		<td style="width:28%;">
+                    <label>Apellido</label><br>
+                    <input type="text" maxlength="50" style="width:90%;" id="apellido">
+         		</td>
+         	</tr>
+         	<tr>
+         		<td style="width:16%;">
+                <label>Sexo</label><br>
+                <input id="mas" class="css-checkbox" type="radio" value="M" name="radio-sexo">
+                <label class="css-label" for="mas">M</label>
+                <input id="fem" class="css-checkbox" type="radio" value="F" name="radio-sexo">
+                <label class="css-label" for="fem">F</label>
+         		</td>
+         		<td style="width:28%;">
+                <label>Fecha de nacimento</label><br>
+                <!-- === calendario === -->  
+                <table class="contenedor-calendario" id="fecha-np" border="0" width="80%">
+                <tr>
+                  <td style="width: 60%;" class="font-campo">
+                  <div class="campo" id="fecha-nacpersona"></div>
+                  </td>
+                  <td style="width: 40%;">
+                  <div class="boton"></div>
+                  </td>
+                </tr>
+                </table>             
+                <!-- === calendario === --> 
+         		</td>
+         		<td style="width:28%;">
+                 <label>Cargo</label><br>
+                 <div class="selector-cargo">
+                 <select style="width:100%;" id="id_cargo"></select>
+                 </div> 
+         		</td>
+         		<td style="width:28%;">
+                <label>Profesi&oacuten</label><br>
+                  <div class="selector-profesion">
+                   <select style="width:95%;" id="id_profesion"></select>
+                   </div> 
+         		</td>
+         	</tr>
+         	<tr>
+         		<td style="width:16%;">
+                 <label>Tel&eacutefono</label><br>
+                 <input type="text" maxlength="12" style="width:90%;" id="telefono">
+         		</td>
+         		<td style="width:28%;">
+                <label>Correo</label><br>
+                <input type="text" maxlength="50" style="width:90%;" id="correo">
+         		</td>
+         		<td colspan="2" style="width:28%;">
+                 <label>Direcci&oacuten</label><br>
+                 <input type="text" maxlength="100" style="width:95%;" id="direccion">
+         		</td>
+         	</tr>
+
+           <tr>
+              <td colspan="2" style="width:50%;">
+                <label>Municipio</label><br>
+                 <div class="municipio">
+                 <select style="width:100%;" id="id_municipio"></select>
+                 </div>
+              </td>
+               <td colspan="2" style="width:50%;">
+                <label>Parroquia</label><br>
+                 <div class="selector-parroquia">
+                 <select style="width:98%;" id="id_parroquia"></select>
+                 </div>
+              </td>
+           </tr>
+
+         	<tr>
+         		<td colspan="4">
+         			 <div class="titulo-modulo">Padr&oacuten Electoral</div>
+         		</td>
+         	</tr>
+         	<tr>
+         		<td style="width:16%;">
+         		<label>¿Vota?</label><br>
+         		<input id="si-vota" class="css-checkbox" type="radio" value="1" name="padron-electoral">
+                <label class="css-label" for="si-vota">SI</label>
+                <input id="no-vota" class="css-checkbox" type="radio" value="0" name="padron-electoral">
+                <label class="css-label" for="no-vota">NO</label><br>
+         		</td>
+         		<td style="width:28%;">
+                <label>Centro de votaci&oacuten</label><br>
+                <input type="text" maxlength="90" style="width:90%;" id="centro-vot"><br>
+         		</td>
+         		<td style="width:28%;">
+                <label>Direcci&oacuten</label><br>
+                <input type="text" maxlength="90" style="width:90%;" id="dir-centro-vot"><br>
+         		</td>
+         		<td style="width:28%;">
+                <label>Estado</label><br>
+                <div class="selector-estado">
+                <select style="width:95%;" id="id_estado_votacion"></select>
+                </div>
+         		</td>
+         	</tr>
+         	<tr>
+         		<td colspan="4">
+         			 <div class="titulo-modulo">Discapacidad</div>
+         		</td>
+         	</tr>
+         	<tr>
+         		<td style="width:16%;">
+         		<label>¿Padece discapacidad?</label><br>
+         		<input id="si-padece" class="css-checkbox" type="radio" value="1" name="discapacidad">
+                <label class="css-label" for="si-padece">SI</label>
+                <input id="no-padece" class="css-checkbox" type="radio" value="0" name="discapacidad">
+                <label class="css-label" for="no-padece">NO</label><br>	
+         		</td>
+         		<td style="width:28%;">
+         		<label>Tipo</label><br>
+                <input type="text" maxlength="100" style="width:90%;" id="tipo-discapacidad"><br>
+         		</td>
+         		<td colspan="2">
+         		<label>Descripci&oacuten</label><br>
+                <input type="text" maxlength="100" style="width:95%;" id="desc-discapacidad"><br>
+         		</td>
+         	
+         	</tr>
+         	<tr>
+         		<td colspan="4">
+         			 <div class="titulo-modulo">Habilidades</div>
+         		</td>
+         	</tr>
+         	<tr>
+         		<td style="width:16%;">
+         		<label>¿Tiene alguna habilidad?</label><br>
+                <input id="si-tiene" class="css-checkbox" type="radio" value="1" name="info-habilidades">
+                <label class="css-label" for="si-tiene">SI</label>
+                <input id="no-tiene" class="css-checkbox" type="radio" value="0" name="info-habilidades">
+                <label class="css-label" for="no-tiene">NO</label><br>
+         		</td>
+         		<td style="width:28%;">
+                <label>Tipo</label><br>
+                <input type="text" maxlength="80" style="width:90%;" id="tipo-habilidad"><br>
+         		</td>
+         		<td colspan="2">
+                <label>Descripción</label><br>
+                <input type="text" maxlength="100" style="width:95%;" id="desc-habilidad"><br>
+         		</td>
+         	</tr>
+         </table>
+
+       <table class="tabla" border="0" id="info-estudiante" style="display:none"><!-- ************************INFORMACION DEL ESTUDIANTE************************ --> 
+       	<tr>
+        	<td colspan="5">
+        	 <div class="titulo-modulo">Informaci&oacuten bachillerato del estudiante</div>
+        	</td>
+         	</tr>
+         	<tr>
+             <td style="width:16%;">
+                <label>A&ntildeo de egreso</label><br>
+                <input type="text" maxlength="80" style="width:90%;" id="fecha-egreso">
+             </td> 
+             <td style="width:28%;">
+                <label>Instituci&oacuten</label><br>
+                <input type="text" maxlength="100" style="width:90%;" id="institu-bachiller">
+             </td> 
+             <td colspan="3" >
+                <label>T&iacutetulo obtenido</label><br>
+                <input type="text" maxlength="90" style="width:90%;" id="titulo-obtenido">
+             </td>  
+         	</tr>
+         	<tr>
+         		<td colspan="5">
+         			 <div class="titulo-modulo">Informaci&oacuten de beca del estudiante</div>
+         		</td>
+         	</tr>
+         	<tr>
+         		<td style="width:16%;">
+         		<label>¿Es becado?</label><br>
+                <input id="si-becado" class="css-checkbox" type="radio" value="1" name="info-beca">
+                <label class="css-label" for="si-becado">SI</label>
+                <input id="no-becado" class="css-checkbox" type="radio" value="0" name="info-beca">
+                <label class="css-label" for="no-becado">NO</label> 
+         		</td>
+         		<td style="width:20%;">
+                <label>Espacio asignado</label><br>
+                <input type="text" maxlength="90" style="width:90%;" id="desc-espacio-asg">
+         		</td>
+         		<td style="width:20%;">
+                <label>Actividad</label><br>
+                <input type="text" maxlength="100" style="width:90%;" id="desc-act-becado">
+         		</td>
+            <td style="width:20%;">
+                <label>D&iacuteas de actividad</label><br>
+                <input type="text" maxlength="80" style="width:90%;" id="dias_labor">
+            </td>
+         		<td style="width:20%;">
+                <label>Horas al d&iacutea</label><br>
+                <input type="text" maxlength="2" style="width:80%;" id="horas-dia-labor"> 
+         		</td>
+         	</tr>
+       </table><!-- ************************INFORMACION DEL ESTUDIANTE************************ --> 
+      <table class="tabla" border="0"><!-- ****Boton registrar mensaje**** --> 
+      	   <tr>
+         	<td colspan="4">
+                  <div class="fondo-mensaje" id="mensaje"></div>
+         		</td>
+         	</tr>
+         	<tr>
+         		<td colspan="4">
+               <div class="contenedor-boton">
+               <button type="submit" id="boton-enviar-persona">
+               <div id="texto-guardar-persona">Registrar</div>
+               </button>
+               </div>
+         	   </td>
+         	</tr>
+      </table><!-- ****Boton registrar mensaje**** --> 
+         </form><!--== cierre formulario==-->
+       </div><!--== cierre del contenedor de tablas==-->
+      </body>
+   </html>

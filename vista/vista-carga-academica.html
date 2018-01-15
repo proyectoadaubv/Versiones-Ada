@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+        <link rel="stylesheet" href="../css/estilo_css.css" />
+        <link rel="stylesheet" href="../css/pcal.css" />
+        <script type="text/javascript" src="../lib-jQuery/jquery-3.1.0.js"></script>
+        <script type="text/javascript" src="../js/herramientas.js"></script>    
+        <script type="text/javascript" src="../js/aspecto-elementos.js"></script> 
+        <script type="text/javascript" src="../js/validar-carga-academica.js"></script> 
+        <script type="text/javascript" src="../js/pcal.js"></script>
+      <!-- *****Función para eliminar el parpadeo de la carga de esta página*****-->
+     <script type="text/javascript">
+     $(document).ready(function(){  $('body').hide(); $('body').fadeIn(0); 
+        of_mod($("#proyectos"));
+        on_mod($("#horarios"));
+        of_mod($("#proyectos"));
+        of_mod($("#usuarios"));
+        of_mod($("#panel-control"));
+
+       /*<!--== Carga de listas desplegables ==-->*/
+ 
+
+   });
+     </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   </head>  
+      <body>
+       <!-- ************************************************************************************** -->
+         <div>
+           <input type="text"  maxlength="20" id="cod_persona_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+         </div>
+        <!-- ************************************************************************************** -->
+       <!--== apertura modal calendario ==-->
+        <div class="modal-calendario">
+         <div class="modal_contenedor">
+            <div class="cerrar-calendario">x</div>
+             <table class="tabla-calendario">
+              <tr>
+              <td>
+               <label>Dia</label>
+               <select id="dia"></select>
+              </td>
+              <td>
+               <label>Mes</label>
+               <select id="mes"></select>
+              </td>
+              <td>
+               <label>Año</label>
+               <select id="anio"></select>
+              </td>
+              </tr>
+              <tr>
+              <td colspan="3">
+              <div class="boton-aceptar"></div>
+              </td>
+              </tr>
+             </table>
+         </div>
+        </div>
+       <!--== cierre modal calendario ==-->
+       <div class="titulo-modulo">Carga Acad&eacutemica</div>
+
+       <div class="titulo-listar-docente" id="listar-docentes"><u>Listar docentes</u></div>
+       <div id="lista"></div>
+       <table class="datos-docente" border="0">
+         <tr>
+           <td style="width:33%">
+             <div id="cedula"></div>
+           </td>
+           <td style="width:33%">
+             <div id="nombre"></div> 
+           </td>
+           <td style="width:33%">
+               <div id="apellido"></div>
+           </td>
+         </tr>
+       </table>
+
+
+    <form id="form-carga-docente" autocomplete="off" method="POST"><!--== Open form == -->
+
+<!--================================ COMPONENTE FORMACION ==-->
+       <div class="titulo-modulo">Formaci&oacuten [12 horas]</div>
+       <table class="tabla" border="0">
+         <tr>
+           <td style="width:20%;">
+                   <label>Aulas</label><br>
+                   <input type="text" maxlength="2" style="width:90%;" id="horas-aulas">
+           </td>
+           <td style="width:20%;">
+                   <label>Estudios avanzados</label><br>
+                   <input type="text" maxlength="2" style="width:90%;" id="horas-ea">
+           </td>
+           <td style="width:20%;">
+                   <label>Piu</label><br>
+                   <input type="text" maxlength="2" style="width:90%;" id="horas-piu">
+           </td>
+           <td style="width:20%;">
+                   <label>Asesorias</label><br>
+                   <input type="text" maxlength="2" style="width:90%;" id="horas-asesorias">
+           </td>
+           <td style="width:20%;">
+                   <label>Total de horas</label><br>
+                   <input type="text" maxlength="5" style="width:90%; text-align: center;" id="total">
+           </td>
+         </tr>
+
+         <tr>
+         <td colspan="5">
+           <div class="fondo-mensaje" id="mensaje"></div>
+         </td>
+         </tr>
+       </table>
+
+<!--================================ PRODUCCION - RECREACION - CONOCIMIENTO ==-->
+       <div class="titulo-modulo">Producci&oacuten - Recreaci&oacuten - Conocimiento [14 horas]</div>
+       <br>
+<!--================================ POLITICA ADMINISTRATIVA ==-->
+       <div class="titulo-modulo">Pol&iacutetica Administrativa [6 horas]</div>
+       <br>
+<!--================================ INTEGRACION SOCIO COMUNITARIA ==-->
+       <div class="titulo-modulo">Integraci&oacuten Socio-Comunitaria [Mayor o igual a 32 horas]</div>
+       <br>
+
+
+
+    </form><!--== Close form == -->
+
+
+       </div><!--== cierre del contenedor de tablas==-->
+      </body>
+   </html>

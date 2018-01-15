@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+   <meta charset="utf-8"/>
+     <link rel="stylesheet" href="../css/estilo_css.css" />
+
+     <script type="text/javascript" src="../lib-jQuery/jquery-3.1.0.js"></script>  
+
+        <script type="text/javascript" src="../js/herramientas.js"></script>   
+        <script type="text/javascript" src="../js/validar-seccion.js"></script>  
+        <script type="text/javascript" src="../js/validar-turno.js"></script>    
+        <script type="text/javascript" src="../js/funcion-seccion.js"></script>  
+        <script type="text/javascript" src="../js/funcion-turno.js"></script>  
+        <script type="text/javascript" src="../js/aspecto-elementos.js"></script>  
+        <!-- *****Función para eliminar el parpadeo de la carga de esta página*****-->
+        <script type="text/javascript">
+        $(document).ready(function(){
+         $('body').hide(); $('body').fadeIn(0);
+        of_mod($("#proyectos"));
+        of_mod($("#horarios"));
+        of_mod($("#usuarios"));
+        on_mod($("#panel-control"));
+               $("#mostrar_secciones").load('../vista/buscar-seccion.html');
+               $("#mostrar_turno").load('../vista/buscar-turno.html');
+
+          });
+        </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>  
+<body>
+        <!-- ************************************************************************************** -->
+         <div>
+           <input type="text"  maxlength="20" id="cod_seccion_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+           <input type="text"  maxlength="20" id="cod_turno_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+           <input type="text"  maxlength="20" id="desc_seccion_actual" style='display:none;'><!--VARIABLE OCULTA-->
+           <input type="text"  maxlength="20" id="desc_turno_actual" style='display:none;'><!--VARIABLE OCULTA-->
+         </div>
+        <!-- ************************************************************************************** -->
+   <div class="titulo-modulo">Panel de control - Registro de secciones y turnos</div>
+     <div class="contenedor-tabla">
+         <table class="tabla" border="0"><!-- *******TABLA PRINCIPAL******* -->
+          <tr><!-- *******TR PRINCIPAL 1******* -->
+          <td style="width:50%;"><!-- *******TD PRINCIPAL 1******* -->
+             <table class="tabla" border="0" width="50%"><!-- *******SUB-TABLA 1******* -->
+                <tr>
+                  <td>
+                  <form id="form_seccion" autocomplete="off"><!-- *******SECCION******* -->
+                   <table class="tabla" border="0" width="50%"><!-- *******TABLA CONTENEDOR 1******* -->
+                     <tr><!-- *******Campos******* -->
+                      <td class="Estilo_trtd">
+                     <table border="0" width="100%"><!-- *******CAMPOS******* -->
+                       <tr>
+                        <td>
+                        <center>
+                          <label>Descripci&oacuten secci&oacuten</label><br>
+                          <input style="width:50%;" type="text" maxlength="10" id="seccion-desc">
+                          </center>
+                        </td>
+                       </tr>
+                     </table>
+                     </td>
+                     </tr>
+                     <tr><!-- *******Boton******* -->
+                      <td>
+                         <div class="contenedor-boton">
+                             <button type="submit" id="boton-enviar-seccion">
+                             <div id="texto-guardar-seccion">Registrar</div>
+                             </button>
+                         </div>
+                     </td>
+                     </tr>
+                    <tr>
+                      <td>
+                      <div class="fondo-mensaje" id="mensajes"></div>
+                       </td>
+                     </tr>
+                  </table>
+                </form><!-- *******CIERRE DEL SECCION******* -->
+                  </td>
+                </tr>
+             </table>
+          </td><!-- *******TD PRINCIPAL******* -->
+<!-- **********************************DIVISION DENTRE TABLAS CONTENEDORES********************************* -->
+          <td style="width:50%;"><!-- *******TD PRINCIPAL******* -->
+            <form id="form_turno" autocomplete="off"><!-- *******FORMULARIO TURNO******* -->
+             <table class="tabla" border="0" width="50%"><!-- *******SUB-TABLA 2******* -->
+                <tr>
+                  <td class="Estilo_trtd">
+                     <table border="0" width="100%"><!-- *******CAMPOS******* -->
+                       <tr>
+                        <td>
+                          <center>
+                          <label>Descripci&oacuten turno</label><br>
+                          <input style="width:50%;" type="text" maxlength="100" id="turno-desc">
+                          </center>
+                        </td>
+                       </tr>
+                     </table>
+                  </td>
+                </tr>
+                <tr><!-- *******Boton******* -->
+                  <td>
+                      <div class="contenedor-boton">
+                             <button type="submit" id="boton-enviar-turno">
+                             <div id="texto-guardar-turno">Registrar</div>
+                             </button>
+                        </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                      <div class="fondo-mensaje" id="mensajet"></div>
+                  </td>
+                </tr>
+             </table>
+            </form><!-- *******CIERRE DEL FORMULARIO TURNO******* -->
+            </td><!-- *******TD PRINCIPAL 1******* -->
+           </tr><!-- *******TR PRINCIPAL 1******* -->
+          <tr><!-- *******TR PRINCIPAL 2******* -->
+          <td><!-- *******TD PRINCIPAL 2******* -->
+                  <!-- *****************************CONTENIDO**************************************** -->
+                  <div class="titulo-modulo">Secciones</div>
+                  <div>
+                  <div id="mostrar_secciones"></div>
+                  </div>
+                  <!-- *****************************CONTENIDO**************************************** -->
+          </td><!-- *******TD PRINCIPAL 2******* -->
+          <td><!-- *******TD PRINCIPAL 2******* -->
+                  <!-- *****************************CONTENIDO**************************************** -->
+                  <div class="titulo-modulo">Turnos</div>
+                  <div>
+                  <div id="mostrar_turno"></div>
+                  </div>
+                   <!-- *****************************CONTENIDO**************************************** -->
+          </td><!-- *******TD PRINCIPAL 2******* -->
+          </tr><!-- *******TR PRINCIPAL 2******* -->
+          </table><!-- *******TABLA PRINCIPAL******* -->
+         </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+   
+     <script type="text/javascript" src="../js/herramientas.js"></script>
+     <script type="text/javascript">
+     $(document).ready(function(){ 
+
+      $('body').hide(); $('body').fadeIn(0);
+    $.ajax({ type: "POST", url: "../procesos/mostrar-version.php", success: function(response){
+    $('.selector-version-uc select').html(response).fadeIn();  
+    }
+    });
+
+    $.ajax({ type: "POST", url: "../procesos/mostrar-mod.php", success: function(response){
+    $('.selector-modalidad select').html(response).fadeIn();  
+    }
+    });
+
+    $('#form').submit(function(event){
+         event.preventDefault();//Detiene el evento
+             if($('#cod_version').val() ==0){
+
+                 error('#mensaje','Seleccionar versión');
+
+              }else if($('#cod_modalidad').val() ==0){
+
+                 error('#mensaje','Seleccionar modalidad');
+
+               }else{
+                  //Enviar petición a php, a busca los IDS en la base de datos
+                  $.post("../procesos/procesos.php", {id_proceso: 0, id_version: $('#cod_version').val(), id_modalidad: $('#cod_modalidad').val(), id_busqueda: 31}, function(existe){
+            
+                  if (existe != 0 ) {
+
+                  var Visualizar = window.open("../reportes/reporte-uc.php?version='" + $('#cod_version').val()+"'&modalidad='"+$('#cod_modalidad').val()+"'"); 
+                  $('#form')[0].reset(); 
+
+                  }else{
+                     error('#mensaje','La versión seleccionada no tiene ésta modalidad');
+                  }
+                 });
+               }
+           });
+
+
+ $('.caja_cerrar').on('click', function(){ cerrar_caja(); });
+       });
+
+         function abrir_caja(){
+          $('.caja').slideDown('slide');
+         }
+         function cerrar_caja(){
+          $('.caja').slideUp('fast');
+          }
+     </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head> 
+<body>
+<div class="titulo-modulo">Gestión de reportes</div>
+
+
+       <!--== apertura modal ==-->
+        <div class="caja">
+         <div class="caja_contenedor">
+            <div class="caja_cerrar">x</div>
+   <div class="titulo-modulo">Opciones de reporte de la Malla curricular</div>
+   <br>
+     <form id="form">
+     <table class="tabla" border="0">
+     	<tr> 
+     		<td style="width:30%;">
+                <label>Seleccionar versi&oacuten</label>
+	            <div class="selector-version-uc">
+	            <select style="width:100%;" id="cod_version"></select>
+	            </div>
+     		</td>
+     		<td style="width:30%;">
+     			<label>Seleccionar modalidad</label>
+	            <div class="selector-modalidad">
+	            <select style="width:100%;" id="cod_modalidad"></select>
+	            </div>
+     		</td>
+     	</tr>
+     </table>
+     <div id="mensaje" class="fondo-mensaje"></div>
+             <div class="contenedor-boton">
+             <button type="submit">
+             <div>Imprimir</div>
+             </button>
+             </div>
+	 </form>  
+         </div>
+        </div>
+       <!--== cierre modal  ==-->
+
+    <table width="20%" border="0">
+    	<tr>
+    		<td>
+    			 <div onclick="javascript:abrir_caja();" style="cursor:pointer" class="boton-opciones">Malla curricular</div>
+    		</td>
+    	</tr>
+    </table>
+       
+</body>
+</html>

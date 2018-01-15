@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+   <meta charset="utf-8"/>
+     <link rel="stylesheet" href="../css/estilo_css.css" />
+     <script type="text/javascript" src="../lib-jQuery/jquery-3.1.0.js"></script>  
+        <script type="text/javascript" src="../js/herramientas.js"></script>   
+        <script type="text/javascript" src="../js/validar-aula-lab.js"></script>  
+        <script type="text/javascript" src="../js/funcion-aula-lab.js"></script>  
+        <script type="text/javascript" src="../js/aspecto-elementos.js"></script>  
+        <!-- *****Función para eliminar el parpadeo de la carga de esta página*****-->
+        <script type="text/javascript">
+        $(document).ready(function(){ $('body').hide(); $('body').fadeIn(0);
+        of_mod($("#proyectos"));
+        of_mod($("#horarios"));
+        of_mod($("#proyectos"));
+        of_mod($("#usuarios"));
+        on_mod($("#panel-control"));
+
+                 $.ajax({ type: "POST", url: "../procesos/mostrar-edif-selct.php", success: function(response){
+                 $('.selector-edificio_selct select').html(response).fadeIn();  
+                 }
+                }); 
+          $('#mostrar-aula').load('../vista/buscar-aula.html'); 
+          $('#mostrar-lab').load('../vista/buscar-lab.html');      
+         });
+        </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>  
+    <body>
+        <!-- ************************************************************************************** -->
+         <div>
+           <input type="text"  maxlength="20" id="cod_au_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+           <input type="text"  maxlength="20" id="cod_lab_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+           <input type="text"  maxlength="20" id="desc_au_actual" style='display:none;'><!--VARIABLE OCULTA-->
+           <input type="text"  maxlength="20" id="desc_lab_actual" style='display:none;'><!--VARIABLE OCULTA-->
+         </div>
+<!-- ************************************************************************************** -->
+  <div class="titulo-modulo">Panel de control - Registro de aulas y laboratorios</div>
+  <div class="contenedor-tabla">
+         <form id="form_au_lab" autocomplete="off">
+         <table class="tabla">
+           <tr>
+             <td style="width:20%;">
+                <label>Espacio</label><br>
+                  <select  id="id_espacio" style="width:98%;">
+                     <option value="0">ELEGIR</option>
+                     <option value="1">AULA</option>
+                     <option value="2">LABORATORIO</option>
+                 </select>
+             </td>
+             <td style="width:40%;">
+                <label>Edificio</label><br>
+                <div class="selector-edificio_selct">
+                <select style="width:98%;" id="id_edificio"></select>
+                </div>
+             </td>
+             <td style="width:40%;">
+<!-- ************************************************************************************** -->
+             <table style="width:100%;"  border="0">
+               <tr>
+                 <td>
+                     <label>Descripci&oacuten</label><br>
+                      <input style="width:70%;" type="text" maxlength="20" id="desc_esp">
+                 </td>
+                 <td>
+                     <label>Capacidad</label><br>
+                      <input style="width:70%;" type="text" maxlength="3" id="cap_esp">
+                 </td>
+                 <td>
+                     <label>Cantidad de equipos</label><br>
+                      <input style="width:70%;" type="text" maxlength="3" id="cant_equipo">
+                 </td>
+               </tr>
+             </table>
+<!-- ************************************************************************************** -->
+             </td>
+           </tr>
+         </table>
+              <div class="contenedor-boton">
+              <button type="submit" id="boton-enviar-esp">
+              <div id="texto-guardar">Registrar</div>
+              </button>
+              </div>
+            </form>
+        <div class="fondo-mensaje" id="mensaje"></div>
+        </div>
+      <div class="contenedor-tabla">     
+        <table class="tabla">
+          <tr>
+            <td style="width:50%;">
+                    <div class="titulo-modulo">Aulas</div>
+                    <div id="mostrar-aula"></div>
+            </td>
+            <td style="width:50%;">
+                    <div class="titulo-modulo">Laboratorios</div>
+                    <div id="mostrar-lab"></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+  </body>
+</html>

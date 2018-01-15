@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<header>
+<meta charset="utf-8">
+
+<script>
+$(document).ready(function(){
+          
+         $("#Mostrar_datos_tipo_persona").load('../procesos/mostrar-tipoper.php');//Cargar datos desde la base de datos
+         mayuscula("input#Busqueda_tipo_persona");//Convertir en mayuscula
+         texto_fondo("#Busqueda_tipo_persona", "Ej: Docente");//Colocar texto de fondo
+         entrada_raton('#Busqueda_tipo_persona');//Evento que se ejecuta al entrar el mouse adentro
+         solo_letras('#Busqueda_tipo_persona');//Validar para solo letras
+
+        var consulta;
+        //hacemos focus al campo de búsqueda
+        $("#Busqueda_tipo_persona").focus();
+                                                                                                     
+        //comprobamos si se pulsa una tecla
+        $("#Busqueda_tipo_persona").keyup(function(e){
+                                      
+              //obtenemos el texto introducido en el campo de búsqueda
+              consulta = $("#Busqueda_tipo_persona").val();
+              //hace la búsqueda      
+              $.ajax({
+                    type: "POST",
+                    url: "../procesos/mostrar-tipoper.php",
+                    data: "valorBusquedaTipoPersona="+consulta,
+                    dataType: "html",
+                    beforeSend: function(){
+                    //imagen de carga
+                    $("#Mostrar_datos_tipo_persona").html("<p align='center'><img src='../img/ico-cargar.gif'/></p>");
+                    },
+                    error: function(){
+                     mensaje_error("Error de peticion");
+                    },
+                    success: function(data){                                                    
+                    $("#Mostrar_datos_tipo_persona").empty();
+                    $("#Mostrar_datos_tipo_persona").append(data);                                                             
+                    }
+              });                                                                         
+        });                                                     
+});             
+</script>
+</header>
+<body>
+<table border="0" class="estilo_tabla_buscar">
+  <tr>
+    <td>
+      <label class="texto-buscar">Buscar: </label>&nbsp;
+      <input type="text" id="Busqueda_tipo_persona" style="width:50%;" maxlength="150" autocomplete="off"/>
+    </td>
+  </tr>
+</table>
+      <div id="Mostrar_datos_tipo_persona"></div>
+</body>
+</html>

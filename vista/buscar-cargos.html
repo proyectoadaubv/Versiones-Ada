@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<header>
+<meta charset="utf-8">
+
+<script>
+$(document).ready(function(){
+          
+         $("#Mostrar_datos_cargos").load('../procesos/mostrar-cargos.php');//Cargar datos desde la base de datos
+         mayuscula("input#Busqueda_cargo");//Convertir en mayuscula
+         texto_fondo("#Busqueda_cargo", "Ej: Coordinador");//Colocar texto de fondo
+         entrada_raton('#Busqueda_cargo');//Evento que se ejecuta al entrar el mouse adentro
+         solo_letras('#Busqueda_cargo');//Validar para solo letras
+
+        var consulta;
+        //hacemos focus al campo de búsqueda
+        $("#Busqueda_cargo").focus();
+                                                                                                     
+        //comprobamos si se pulsa una tecla
+        $("#Busqueda_cargo").keyup(function(e){
+                                      
+              //obtenemos el texto introducido en el campo de búsqueda
+              consulta = $("#Busqueda_cargo").val();
+              //hace la búsqueda      
+              $.ajax({
+                    type: "POST",
+                    url: "../procesos/mostrar-cargos.php",
+                    data: "valorBusquedaCargo="+consulta,
+                    dataType: "html",
+                    beforeSend: function(){
+                    //imagen de carga
+                    $("#Mostrar_datos_cargos").html("<p align='center'><img src='../img/ico-cargar.gif'/></p>");
+                    },
+                    error: function(){
+                     mensaje_error("Error de peticion");
+                    },
+                    success: function(data){                                                    
+                    $("#Mostrar_datos_cargos").empty();
+                    $("#Mostrar_datos_cargos").append(data);                                                             
+                    }
+              });                                                                         
+        });                                                     
+});             
+</script>
+</header>
+<body>
+<table border="0" class="estilo_tabla_buscar">
+  <tr>
+    <td>
+      <label class="texto-buscar">Buscar: </label>&nbsp;
+      <input type="text" id="Busqueda_cargo" style="width:60%;" maxlength="50" autocomplete="off"/>
+    </td>
+  </tr>
+</table>
+      <div id="Mostrar_datos_cargos"></div>
+</body>
+</html>

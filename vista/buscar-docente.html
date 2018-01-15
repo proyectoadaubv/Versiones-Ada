@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<header>
+<meta charset="utf-8">
+
+<script>
+$(document).ready(function(){
+         $('body').hide(); $('body').fadeIn(0);
+         $("#Mostrar_datos_docente").load('../procesos-php/gestion-horarios/docente_mostrar.php');//Cargar datos desde la base de datos
+         mayuscula("input#BusquedaDocente");//Convertir en mayuscula
+         texto_fondo("#BusquedaDocente", "Ejemplo: Ender");//Colocar texto de fondo
+         entrada_raton('#BusquedaDocente');//Evento que se ejecuta al entrar el mouse adentro
+         solo_letras('#BusquedaDocente');//Validar para solo letras
+
+        var consulta;
+        //hacemos focus al campo de búsqueda
+        $("#BusquedaDocente").focus();
+                                                                                                     
+        //comprobamos si se pulsa una tecla
+        $("#BusquedaDocente").keyup(function(e){
+                                      
+              //obtenemos el texto introducido en el campo de búsqueda
+              consulta = $("#BusquedaDocente").val();
+              //hace la búsqueda      
+              $.ajax({
+                    type: "POST",
+                    url: "../procesos-php/gestion-horarios/docente_mostrar.php",
+                    data: "valorBusquedaDocente="+consulta,
+                    dataType: "html",
+                    beforeSend: function(){
+                    //imagen de carga
+                    $("#Mostrar_datos_docente").html("<p align='center'><img src='../img/ico-cargando.gif'/></p>");
+                    },
+                    error: function(){
+                     mensaje_error("Error de peticion");
+                    },
+                    success: function(data){                                                    
+                    $("#Mostrar_datos_docente").empty();
+                    $("#Mostrar_datos_docente").append(data);                                                             
+                    }
+              });                                                                         
+        });                                                     
+});             
+</script>
+</header>
+<body>
+<table border="0" class="estilo_tabla_buscar">
+  <tr>
+    <td>
+      <label class="texto-buscar">Buscar docente por nombre:</label>&nbsp;
+      <input type="text" id="BusquedaDocente" style="width:30%;" maxlength="150" autocomplete="off"/>
+    </td>
+  </tr>
+</table>
+      <div id="Mostrar_datos_docente"></div>
+</body>
+</html>

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="../css/estilo_css.css" />
+  <script type="text/javascript" src="../jQuery/herramientas.js"></script> 
+  <!-- *****Función para eliminar el parpadeo de la carga de esta página*****-->
+     <script type="text/javascript" src="../lib-jQuery/jquery-3.1.0.js"></script>  
+     <script type="text/javascript">
+     $(document).ready(function(){  $('body').hide(); $('body').fadeIn(0);
+        of_mod($("#panel-control"));
+        of_mod($("#proyectos"));
+        of_mod($("#horarios"));
+        of_mod($("#usuarios"));
+        on_mod($("#proyectos"));
+      });
+     </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head> 
+<body>
+
+<div class="Div_FondoTitulos">Gestión de proyectos - descripción general</div>
+
+<div class="contenedor-tabla"><!-- **************CONTENEDORA DE TABLAS*************-->
+<form class="Estilo_formulario"><!-- ***APERTURA FORMULARIO***-->
+
+<table class="Estilo_tabla" border="0"><!-- **************TABLA PRINCIPAL************* -->
+    <tr><!-- **************PRIMER TR PARA LA PRIMERA LINEA DEL FORMULARIO*************-->
+       <td style="width:30%;">
+         <label class="Estilo_letra">Nombre de la comunidad</label><br>
+         <input style="width:90%;" maxlength="20" type="text" name="" required  class="Estilo_letra"/>
+         <span class="form_hint">Ejemplo: "comunidad las Mercedes"</span> 
+       </td>
+       <td style="width:30%;">
+         <label class="Estilo_letra">Dirección</label><br>
+         <input style="width:90%;" maxlength="20" type="text" name="" required  class="Estilo_letra"/>
+       </td>
+       <td style="width:10%;">
+         <label class="Estilo_letra">Estado</label><br>
+        <select name="OS" style="width:100%;" class="Estilo_letra">
+        <option value="1">1</option> 
+        <option value="2">2</option> 
+        <option value="3">3</option>
+        <option value="11">4</option> 
+        <option value="12">5</option> 
+        </select>
+       </td>
+       <td style="width:10%;">
+         <label class="Estilo_letra">Municipio</label><br>
+        <select name="OS" style="width:100%;" class="Estilo_letra">
+        <option value="1">1</option> 
+        <option value="2">2</option> 
+        <option value="3">3</option>
+        <option value="11">4</option> 
+        <option value="12">5</option> 
+        </select>
+       </td>
+       <td style="width:10%;">
+         <label class="Estilo_letra">Parroquia</label><br>
+        <select name="OS" style="width:100%;" class="Estilo_letra">
+        <option value="1">1</option> 
+        <option value="2">2</option> 
+        <option value="3">3</option>
+        <option value="11">4</option> 
+        <option value="12">5</option> 
+        </select>
+       </td>
+     </tr><!-- **************CIERRE DEL PRIMER TR*************-->
+     <tr><!-- **************SEGUNDO TR PARA LA SEGUNDA LINEA DEL FORMULARIO*************-->
+     <table class="Estilo_tabla" border="0"><!-- **************TABLA INTERNA 1************* -->
+     <tr>
+     <td style="width:12%;">
+        <label class="Estilo_letra">Etapa del proyecto</label><br>
+        <select name="OS" style="width:100%;" class="Estilo_letra">
+        <option value="1">1</option> 
+        <option value="2">2</option> 
+        <option value="3">3</option>
+        <option value="11">4</option> 
+        <option value="12">5</option> 
+        </select>
+     </td>
+     <td style="width:20%;">
+         <label class="Estilo_letra">Periodo de inicio</label><br>
+         <input style="width:90%;" maxlength="20" type="text" name="" class="Estilo_letra"/>
+     </td>
+     <td>
+        <label class="Estilo_letra">Descripción</label><br>
+        <select name="OS" style="width:100%;" class="Estilo_letra">
+        <option value="1">1</option> 
+        <option value="2">2</option> 
+        <option value="3">3</option>
+        <option value="11">4</option> 
+        <option value="12">5</option> 
+        </select>
+     </td>
+      <td>
+         <label class="Estilo_letra">Nombre del proyecto</label><br>
+         <input style="width:95%;" maxlength="20" type="text" name="" class="Estilo_letra"/>
+      </td>
+     </tr>
+    </table>
+     </tr><!-- **************CIERRE DEL SEGUNDO TR*************-->
+     <tr><!-- **************TERCER TR PARA LA TERCERA LINEA DEL FORMULARIO*************-->
+     <table class="Estilo_tabla" border="0"><!-- **************TABLA INTERNA 2************* -->
+     <tr>
+     <td style="width:12%;">
+        <label class="Estilo_letra">Sección</label><br>
+        <select name="OS" style="width:100%;" class="Estilo_letra">
+        <option value="1">1</option> 
+        <option value="2">2</option> 
+        <option value="3">3</option>
+        <option value="11">4</option> 
+        <option value="12">5</option> 
+        </select>
+     </td>
+     <td style="width:12%;">
+        <label class="Estilo_letra">Tipo de producto</label><br>
+        <select name="OS" style="width:100%;" class="Estilo_letra">
+        <option value="1">1</option> 
+        <option value="2">2</option> 
+        <option value="3">3</option>
+        <option value="11">4</option> 
+        <option value="12">5</option> 
+        </select>
+     </td>
+     <td>
+         <label class="Estilo_letra">Metodología</label><br>
+         <input style="width:90%;" maxlength="20" type="text" name="" class="Estilo_letra"/>
+     </td>
+      <td>
+         <label class="Estilo_letra">Fase de desarrollo</label><br>
+         <input style="width:90%;" maxlength="20" type="text" name="" class="Estilo_letra"/>
+      </td>
+      <td>
+         <label class="Estilo_letra">Objetivo del proyecto</label><br>
+         <input style="width:90%;" maxlength="20" type="text" name="" class="Estilo_letra"/>
+      </td>
+      </tr>
+      </table>
+     </tr><!-- **************CIERRE DEL TERCER TR*************-->
+     <tr><!-- **************CUARTO TR PARA LA CUARTA LINEA DEL FORMULARIO*************-->
+     <table class="Estilo_tabla" border="0"><!-- **************TABLA INTERNA 3************* -->
+     <tr>
+     <td>
+         <label class="Estilo_letra">Alcance del proyecto</label><br>
+         <input style="width:90%;" maxlength="20" type="text" name="" class="Estilo_letra"/>
+     </td>
+     <td>
+         <label class="Estilo_letra">Factibilidad técnica</label><br>
+         <input style="width:90%;" maxlength="20" type="text" name="" class="Estilo_letra"/>
+     </td>
+     <td>
+         <label class="Estilo_letra">Recursos técnicos</label><br>
+         <input style="width:90%;" maxlength="20" type="text" name="" class="Estilo_letra"/>
+     </td>
+     </tr>
+     </table>
+     </tr><!-- **************CIERRE DEL CUARTO TR*************-->   
+</table>
+
+<!-- *********************************TABLA 2 DEL FORM************************************ -->
+<div class="Div_FondoTitulos">Persona de contacto en la comunidad</div>
+<table class="Estilo_tabla" border="0" >
+    <tr><!-- **************PRIMER TR PARA LA PRIMERA LINEA DEL FORMULARIO TP2*************-->
+    <td style="width:12%;">
+<label class="Estilo_letra">Tipo de persona</label><br>
+ <select name="OS"class="Estilo_letra" style="width:100%;">
+   <option value="1">Elegir</option> 
+   <option value="2">2</option> 
+   <option value="3">3</option>
+   <option value="11">4</option> 
+   <option value="12">5</option> 
+ <option value="12">6</option> 
+ </select>
+    </td>
+    <td style="width:12%;">
+         <label class="Estilo_letra">Cédula</label><br>
+         <input style="width:90%;" maxlength="20" type="text" name="" class="Estilo_letra"/>
+    </td>
+    <td style="width:20%;">
+         <label class="Estilo_letra">Nombre</label><br>
+         <input style="width:90%;" maxlength="20" type="text" name="" class="Estilo_letra"/>
+    </td>
+    <td style="width:20%;">
+         <label class="Estilo_letra">Apellido</label><br>
+         <input style="width:90%;" maxlength="20" type="text" name="" class="Estilo_letra"/>
+    </td>
+    <td style="width:8%;">
+   <label class="Estilo_letra">Sexo</label><br>
+   <label class="Estilo_letra">F</label><input type="radio" name="sex" value="F" class="Estilo_letra"/>
+   <label class="Estilo_letra">M</label><input type="radio" name="sex" value="M" class="Estilo_letra"/>
+    </td>
+    <td style="width:12%;">
+   <label class="Estilo_letra">Fecha de nacimiento</label><br>
+     <input type="text" name="cargos" maxlength="2" style="width:90%;" class="Estilo_letra"/>
+    </td>
+    </tr>
+
+<tr>
+  <td colspan="3">
+   <label class="Estilo_letra">Dirección</label><br>
+     <input type="text" name="cargos" maxlength="2" style="width:90%;" class="Estilo_letra"/>
+  </td>
+    <td>
+<label class="Estilo_letra">Estado</label><br>
+ <select name="OS"class="Estilo_letra" style="width:100%;">
+   <option value="1">Elegir</option> 
+   <option value="2">2</option> 
+   <option value="3">3</option>
+   <option value="11">4</option> 
+   <option value="12">5</option> 
+ <option value="12">6</option> 
+ </select>
+  </td>
+    <td>
+<label class="Estilo_letra">Municipio</label><br>
+ <select name="OS"class="Estilo_letra" style="width:100%;">
+   <option value="1">Elegir</option> 
+   <option value="2">Jesús Enrique Losada</option> 
+   <option value="3">3</option>
+   <option value="11">4</option> 
+   <option value="12">5</option> 
+ <option value="12">6</option> 
+ </select>
+  </td>
+    <td>
+<label class="Estilo_letra">Parroquia</label><br>
+ <select name="OS"class="Estilo_letra" style="width:100%;">
+   <option value="1">Elegir</option> 
+   <option value="2">2</option> 
+   <option value="3">3</option>
+   <option value="11">4</option> 
+   <option value="12">5</option> 
+ <option value="12">6</option> 
+ </select>
+  </td>
+</tr>
+<tr>
+    <td colspan="3">
+     <label class="Estilo_letra">Institución</label><br>
+     <input type="text" name="cargos" maxlength="2" style="width:90%;" class="Estilo_letra"/>
+  </td>
+    <td>
+     <label class="Estilo_letra">Cargo</label><br>
+     <input type="text" name="cargos" maxlength="2" style="width:90%;" class="Estilo_letra"/>
+  </td>
+    <td>
+     <label class="Estilo_letra">Teléfono</label><br>
+     <input type="text" name="cargos" maxlength="2" style="width:80%;" class="Estilo_letra"/>
+  </td>
+    <td>
+     <label class="Estilo_letra">Correo</label><br>
+     <input type="text" name="cargos" maxlength="2" style="width:90%;" placeholder="persona@hotmail.com" class="Estilo_letra"/>
+  </td>
+</tr>
+
+</table>
+<!-- *********************************CIERRE DE LA TABLA 2 DEL FORM************************************ -->
+<!-- *********************************TABLA 3 DEL FORM************************************ -->
+<table class="Estilo_tabla" border="0">
+  <tr>
+    <td>
+<!-- ******************************TUTOR************************************ -->
+<div class="Div_FondoTitulos">Tutor</div>
+<div class="Estilo_DivContTablaScroll">
+<table width="100%" border="0">
+  <tr class="Color_FondotitulosTabla">
+    <td> Cédula </td>
+    <td> Nombre </td>
+    <td> Apellido </td>
+    <td colspan="2"> Sexo </td>
+  </tr>
+
+  <tr class="Estilo_letra">
+    <td>
+      12359856
+    </td>
+        <td>
+      Dark
+    </td>
+        <td>
+      Sith
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+  <tr class="Estilo_letra">
+    <td>
+      12359856
+    </td>
+        <td>
+      Dark
+    </td>
+        <td>
+      Sith
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+  <tr class="Estilo_letra">
+    <td>
+      12359856
+    </td>
+        <td>
+      Dark
+    </td>
+        <td>
+      Sith
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+  <tr class="Estilo_letra">
+    <td>
+      12359856
+    </td>
+        <td>
+      Dark
+    </td>
+        <td>
+      Sith
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+  <tr class="Estilo_letra">
+    <td>
+      12359856
+    </td>
+        <td>
+      Dark
+    </td>
+        <td>
+      Sith
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+  <tr class="Estilo_letra">
+    <td>
+      12359856
+    </td>
+        <td>
+      Dark
+    </td>
+        <td>
+      Sith
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+    <tr class="Estilo_letra">
+    <td>
+      12359856
+    </td>
+        <td>
+      Dark
+    </td>
+        <td>
+      Sith
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+</table>
+
+
+</div>
+  </td>
+  <td>
+
+
+
+
+
+
+
+
+
+<!-- ******************************ESTUDIANTES************************************ -->
+<div class="Div_FondoTitulos">Estudiantes</div>
+<div class="Estilo_DivContTablaScroll">
+<table width="100%" border="1">
+  <tr class="Color_FondotitulosTabla">
+    <td> Cédula </td>
+    <td> Nombre </td>
+    <td> Apellido </td>
+    <td colspan="2"> Sexo </td>
+  </tr>
+
+  <tr class="Estilo_letra">
+    <td>
+      13759863
+    </td>
+        <td>
+      Anakyn
+    </td>
+        <td>
+      Skywwalker
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+  <tr class="Estilo_letra">
+    <td>
+      13759863
+    </td>
+        <td>
+      Anakyn
+    </td>
+        <td>
+      Skywwalker
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+  <tr class="Estilo_letra">
+    <td>
+      13759863
+    </td>
+        <td>
+      Anakyn
+    </td>
+        <td>
+      Skywwalker
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+  <tr class="Estilo_letra">
+    <td>
+      13759863
+    </td>
+        <td>
+      Anakyn
+    </td>
+        <td>
+      Skywwalker
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+  <tr class="Estilo_letra">
+    <td>
+      13759863
+    </td>
+        <td>
+      Anakyn
+    </td>
+        <td>
+      Skywwalker
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+  <tr class="Estilo_letra">
+    <td>
+      13759863
+    </td>
+        <td>
+      Anakyn
+    </td>
+        <td>
+      Skywwalker
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+  <tr class="Estilo_letra">
+    <td>
+      13759863
+    </td>
+        <td>
+      Anakyn
+    </td>
+        <td>
+      Skywwalker
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+  <tr class="Estilo_letra">
+    <td>
+      13759863
+    </td>
+        <td>
+      Anakyn
+    </td>
+        <td>
+      Skywwalker
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+  <tr class="Estilo_letra">
+    <td>
+      13759863
+    </td>
+        <td>
+      Anakyn
+    </td>
+        <td>
+      Skywwalker
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+  <tr class="Estilo_letra">
+    <td>
+      13759863
+    </td>
+        <td>
+      Anakyn
+    </td>
+        <td>
+      Skywwalker
+    </td>
+        <td>
+      F
+    </td>
+  <td>
+  <input type="checkbox" name="option1" >   
+    </td>
+  </tr>
+</table>
+</div>
+    </td>
+  </tr>
+</table>
+<!-- *********************************CIERRE TABLA 3 DEL FORM************************************ -->
+<div class="Div_ContenedorBoton">
+   <button type="submit" class="Estilo_boton">Registrar proyecto</button>
+</div>
+</form><!-- ***CIERRE FORMULARIO***-->
+</div><!-- ***CIERRE DEL DIV PRINCIPAL***-->
+
+</body>
+</html>

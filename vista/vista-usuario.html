@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+          <link rel="stylesheet" href="../css/estilo_css.css" />
+     <script type="text/javascript" src="../lib-jQuery/jquery-3.1.0.js"></script>  
+          <script type="text/javascript" src="../jQuery/sweetalert.min.js"></script> 
+        <script type="text/javascript" src="../jQuery/herramientas.js"></script> 
+        <script type="text/javascript" src="../jQuery/detalles_elementos.js"></script> 
+        <script type="text/javascript" src="../jQuery/usuario_validaciones.js"></script> 
+  <!-- *****Función para eliminar el parpadeo de la carga de esta página*****-->
+     <script type="text/javascript">
+     $(document).ready(function(){  $('body').hide(); $('body').fadeIn(0);
+        of_mod($("#panel-control"));
+        of_mod($("#proyectos"));
+        of_mod($("#horarios"));
+        of_mod($("#proyectos"));
+        on_mod($("#usuarios"));
+      });
+
+         function abrir_modal_personas(){
+          $('.modal_list_persona').slideDown('slide');
+          $("#mostrar_personas").load('procesos-php/mostrar_personas.php');
+
+         }
+         function cerrar_modal_personas(){
+          $('.modal_list_persona').slideUp('fast');
+          }
+
+
+         function mostrar_persona(codigo_uc, desc_uc){
+             //$('#desc_uc_seleccion').text(desc_uc);
+             $('.modal_list_persona').slideUp('fast');
+         }
+
+
+     </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>  
+<body>
+         <div><!--VARIABLES OCULTAS-->
+           <input type="text"  maxlength="40" id="cod_user_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+           <input type="text"  maxlength="50" id="desc_user_actual" style='display:none;'><!--VARIABLE OCULTA-->
+         </div>
+
+        <div class="titulo-modulo">Configuración de usuario</div>
+        <div class="contenedor-tabla"><!-- **************CONTENEDORA DE TABLAS*************-->
+
+
+<!-- **************VENTANA MODAL PARA SELECCIONAR USUARIO*************-->
+    <div class="modal_list_persona">
+        <div class="div_ventana_list_persona">
+             <div class="cerrar_m3" onclick="javascript:cerrar_modal_personas();" style="cursor:pointer">Cerrar</div>
+              <div id="mostrar_personas"></div>
+        </div>
+    </div>
+<!-- **************VENTANA MODAL PARA SELECCIONAR USUARIO*************-->
+          <form id="form_registrar_usuario" autocomplete="off">
+            <table class="tabla" border="0"><!-- **************TABLA PRINCIPAL************* -->
+             <tr>
+              <!-- **************TD 01************* -->
+              <td style="width:35%;">
+               <div class="titulo-modulo">Registrar usuario</div>
+               <table class="tabla" border="0">
+
+               <tr>
+               <td>
+               <div id="mostrar_persona">
+               <label class="Estilo_letra">Elegir persona</label>
+               <img src="../img/ico7.png" onclick="javascript:abrir_modal_personas();"/>
+               </div><br>
+               </td>
+               </tr>
+
+               <tr>
+	             <td>
+	             <label class="Estilo_letra">Nombre de usuario</label><br>
+               <input type="text" maxlength="40" style="width:90%;" id="nom-user">
+	             </td>
+               </tr>
+               <tr>
+	             <td>
+	             <label class="Estilo_letra">Clave</label><br>
+               <input type="text" maxlength="50" style="width:90%;" id="clave-user">
+	             </td>
+               </tr>
+               <tr>
+	             <td>
+	             <label class="Estilo_letra">Reingresar clave</label><br>
+               <input type="text" maxlength="2" style="width:90%;" id="clave-user-reingreso">
+	             </td> 
+               </tr>
+               <tr>
+               <td>
+               <label class="Estilo_letra">Tipo de usuario</label><br>
+               <div class="selector-tipo_usuario">
+               <select style="width:90%;" id="tipo-user"></select>
+               </div>
+               </td>
+               </tr>
+               <tr>
+               <td>
+               <label class="Estilo_letra">Seleccionar pregunta</label><br>
+               <select name="OS"class="Estilo_letra" style="width:90%;" id="id_pregunta">
+               <option value="0">ELEGIR</option> 
+               <option value="1">Color favorito</option> 
+               <option value="2">Año de nacimiento</option>
+               <option value="3">Nombre mejor amigo</option> 
+               <option value="4">Comida favorita</option> 
+               </select>
+               </td>
+               </tr>
+               <tr>
+	             <td>
+	             <label class="Estilo_letra">Ingresar respuesta</label><br>
+               <input type="text" maxlength="50" style="width:90%;" id="desc-respuesta-pregunta">
+	             </td>
+               </tr>
+               <tr>
+	             <td>
+               <div class="Div_ContenedorBoton">
+               <button type="submit" id="boton-registrar-user">
+               <div id="texto-guardar-user">Registrar usuario</div>
+               </button>
+               </div>
+	             </td>
+               </tr>
+      </table>
+      </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- **************TD 02************* -->
+<td style="width:35%;">
+<div class="titulo-modulo">Asignar privilegios</div>
+<table class="tabla" border="0">
+<tr>
+	<td style="width:50%;">
+	   <label class="Estilo_letra">Usuario</label><br>
+   <select name="OS"class="Estilo_letra" style="width:90%;">
+   <option value="1">Seleccionar</option> 
+   <option value="2">2</option> 
+   <option value="3">3</option>
+   <option value="11">4</option> 
+   <option value="12">5</option> 
+   <option value="12">6</option> 
+   </select>
+	</td>
+	<td style="width:50%;">
+	   <label class="Estilo_letra">Módulo</label><br>
+   <select name="OS"class="Estilo_letra" style="width:90%;">
+   <option value="1">Seleccionar</option> 
+   <option value="2">2</option> 
+   <option value="3">3</option>
+   <option value="11">4</option> 
+   <option value="12">5</option> 
+   <option value="12">6</option> 
+   </select>
+	</td>
+</tr>
+
+<tr>
+	<td colspan="2">
+		<div class="titulo-modulo">Descripción módulo - lista de privilegios</div>
+	</td>
+</tr>
+  <tr class="Color_FondotitulosTabla">
+    <td> Actividad </td>
+    <td> Permitir </td>
+  </tr>
+<tr class="Estilo_letra"> 
+  <td>Registrar</td>
+  <td><input type="checkbox" name="option1" ></td>	
+</tr>
+<tr class="Estilo_letra"> 
+  <td>Buscar - Mostrar</td>
+  <td><input type="checkbox" name="option1" ></td>	
+</tr>
+<tr class="Estilo_letra"> 
+  <td>Modificar</td>
+  <td><input type="checkbox" name="option1" ></td>	
+</tr>
+<tr class="Estilo_letra"> 
+  <td>Eliminar</td>
+  <td><input type="checkbox" name="option1" ></td>	
+</tr>
+<tr class="Estilo_letra"> 
+  <td>Restringir todo</td>
+  <td><input type="checkbox" name="option1" ></td>	
+</tr>
+<tr class="Estilo_letra"> 
+  <td>Permitir todo</td>
+  <td><input type="checkbox" name="option1" ></td>	
+</tr>
+<tr class="Estilo_letra"> 
+  <td colspan="2">
+  	     <div class="Div_ContenedorBoton">
+     <button type="submit" class="Estilo_boton">Asignar</button>
+     <button type="submit" class="Estilo_boton">Modificar</button>
+     </div>
+  </td>
+<tr><td colspan="2"><br><br><br></td></tr>
+</tr>
+</table>
+</td>
+<!-- **************TD 03************* -->
+<td style="width:35%;">
+<div class="titulo-modulo">Lista de usuarios</div>
+<table class="tabla" border="0">
+<tr class="Color_FondotitulosTabla">
+	<td style="width:50%;"> Usuario </td>
+    <td style="width:50%;" colspan="2"> Tipo </td>
+</tr>
+<tr class="Estilo_letra"> 
+  <td>UBV</td>
+  <td>ADMIN</td>
+   <td><input type="checkbox" name="option1" ></td>	
+</tr>
+<tr class="Estilo_letra"> 
+  <td>UBV 2</td>
+  <td>STANDAR</td>
+   <td><input type="checkbox" name="option1" ></td>	
+</tr>
+<tr class="Estilo_letra"> 
+  <td colspan="3"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</form>
+</div>
+</body>
+</html>

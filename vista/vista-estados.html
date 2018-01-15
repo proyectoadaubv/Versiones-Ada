@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+   <meta charset="utf-8"/>
+     <link rel="stylesheet" href="../css/estilo_css.css" />
+     <script type="text/javascript" src="../lib-jQuery/jquery-3.1.0.js"></script>  
+        <script type="text/javascript" src="../js/herramientas.js"></script>   
+        <script type="text/javascript" src="../js/validar-estado.js"></script>   
+        <script type="text/javascript" src="../js/funcion-estado.js"></script>  
+        <script type="text/javascript" src="../js/validar-municipio.js"></script>  
+        <script type="text/javascript" src="../js/funcion-municipio.js"></script>
+        <script type="text/javascript" src="../js/validar-parroquia.js"></script>  
+        <script type="text/javascript" src="../js/funcion-parroquia.js"></script>
+        <script type="text/javascript" src="../js/aspecto-elementos.js"></script>  
+        <!-- *****Función para eliminar el parpadeo de la carga de esta página*****-->
+        <script type="text/javascript">
+        $(document).ready(function(){
+         $('body').hide(); $('body').fadeIn(0);
+        of_mod($("#proyectos"));
+        of_mod($("#horarios"));
+        of_mod($("#usuarios"));
+        on_mod($("#panel-control"));
+               $("#mostrar_estado").load('../vista/buscar-estado.html');
+               $("#mostrar_municipio").load('../vista/buscar-municipio.html');
+               $("#mostrar_parroquia").load('../vista/buscar-parroquia.html');
+
+                $.ajax({ type: "POST", url: "../procesos/mostrar-estado.php", success: function(response){
+                $('.selector-estado select').html(response).fadeIn();  
+                  }
+                 });
+
+               $.ajax({ type: "POST", url: "../procesos/mostrar-municipio.php", success: function(response){
+               $('.selector-municipio select').html(response).fadeIn(); } });
+          });
+        </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>  
+<body>
+        <!-- ************************************************************************************** -->
+         <div>
+        <input type="text"  maxlength="20" id="cod_estado_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+        <input type="text"  maxlength="20" id="desc_estado_actual" style='display:none;'><!--VARIABLE OCULTA-->
+
+        <input type="text"  maxlength="20" id="cod_municipio_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+        <input type="text"  maxlength="20" id="desc_municipio_actual" style='display:none;'><!--VARIABLE OCULTA-->
+
+        <input type="text"  maxlength="20" id="cod_parroquia_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+        <input type="text"  maxlength="20" id="desc_parroquia_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+        </div>
+        <!-- ************************************************************************************** -->
+     <div class="titulo-modulo">Panel de control: Registro de estado - municipio - parroquia</div>
+     <div>
+         <table class="tabla" border="0" width="60%"><!-- *******TABLA PRINCIPAL******* -->
+          <tr><!-- *******TR PRINCIPAL 1******* -->
+          <td style="width:20%;">
+             <table class="tabla" border="0" width="100%"><!-- *******SUB-TABLA 1******* -->
+                <tr>
+                  <td>
+                  <form id="form_estado" autocomplete="off"><!-- *******ESTADO******* -->
+                   <table class="tabla" border="0" width="100%"><!-- *******TABLA CONTENEDOR 1******* -->
+                     <tr><!-- *******Campos******* -->
+                      <td>
+                      <table border="0" width="100%"><!-- *******CAMPOS******* -->
+                       <tr>
+                        <td>
+                          <label>Descripción del estado</label><br>
+                          <input style="width:90%;" type="text" maxlength="15" id="estado-desc">
+                        </td>
+                       </tr>
+                     </table>
+                     </td>
+                     </tr>
+                     <tr><!-- *******Boton******* -->
+                      <td>
+                         <div class="contenedor-boton">
+                             <button type="submit" id="boton-enviar-estado">
+                             <div id="texto-guardar-estado">Registrar</div>
+                             </button>
+                         </div>
+                        <div class="fondo-mensaje" id="mensaje-e"></div>
+                     </td>
+                     </tr>
+                  </table>
+                </form><!-- *******CIERRE DE ESTADO******* -->
+              </td>
+            </tr>
+         </table>
+      </td>
+<!-- **********************************DIVISION DENTRE TABLAS CONTENEDORES********************************* -->
+          <td style="width:40%;"><!-- *******MUNICIPIO******* -->              
+             <table class="tabla" border="0" width="80%"><!-- *******SUB-TABLA 1******* -->
+                <tr>
+                  <td>
+                  <form id="form_municipio" autocomplete="off"><!-- *******MUNICIPIO******* -->
+
+                   <table class="tabla" border="0" width="100%"><!-- *******TABLA CONTENEDOR 1******* -->
+                     <tr><!-- *******Campos******* -->
+                      <td>
+                      <table border="0" width="100%"><!-- *******CAMPOS******* -->
+                       <tr>
+                        <td>
+                         <label>Seleccionar estado</label><br>
+                         <div class="selector-estado">
+                         <select style="width:95%;" id="id_estado"></select>
+                         </div>
+                          <label>Descripci&oacuten municipio</label><br>
+                          <input style="width:95%;" type="text" maxlength="100" id="municipio-desc">
+                        </td>
+                       </tr>
+                     </table>
+                     </td>
+                     </tr>
+                     <tr><!-- *******Boton******* -->
+                      <td>
+                         <div class="contenedor-boton">
+
+                             <button type="submit" id="boton-enviar-municipio">
+                             <div id="texto-guardar-municipio">Registrar</div>
+                             </button>
+                         </div>
+                                 <div class="fondo-mensaje" id="mensaje-m"></div>
+                     </td>
+                     </tr>
+                  </table>
+                </form><!-- *******CIERRE DE MUNICIPIO******* -->
+              </td>
+            </tr>
+          </table>
+        </td>
+<!-- **********************************DIVISION DENTRE TABLAS CONTENEDORES********************************* -->
+          <td style="width:40%;"><!-- *******PARROQUIA******* -->  
+             <table class="tabla" border="0" width="80%"><!-- *******SUB-TABLA 1******* -->
+                <tr>
+                  <td>
+                  <form id="form_parroquia" autocomplete="off"><!-- *******PARROQUIA******* -->
+                   <table class="tabla" border="0" width="100%"><!-- *******TABLA CONTENEDOR 1******* -->
+                     <tr><!-- *******Campos******* -->
+                      <td>
+                     <table border="0" width="100%"><!-- *******CAMPOS******* -->
+                       <tr>
+                        <td>
+                         <label>Seleccionar municipio</label><br>
+                         <div class="selector-municipio">
+                         <select style="width:95%;" id="id_municipio"></select>
+                         </div>    
+                          <label>Descripci&oacuten parroquia</label><br>
+                          <input style="width:95%;" type="text" maxlength="100" id="parroquia-desc">
+                        </td>
+                       </tr>
+                     </table>
+                     </td>
+                     </tr>
+                     <tr><!-- *******Boton******* -->
+                      <td>
+                         <div class="contenedor-boton">
+                             <button type="submit" id="boton-enviar-parroquia">
+                             <div id="texto-guardar-parroquia">Registrar</div>
+                             </button>
+                         </div>
+                                 <div class="fondo-mensaje" id="mensaje-p"></div>
+                       </td>
+                     </tr>
+                    </table>
+                  </form><!-- *******CIERRE DE PARROQUIA******* -->
+                </td>
+            </tr>
+         </table>
+      </td>
+<!-- **********************************DIVISION DENTRE CONTENEDORES********************************* -->
+          <tr><!-- *******TR PRINCIPAL 2******* -->
+          <td><!-- *******MOSTRAR ESTADO******* -->
+                  <!-- *****************************CONTENIDO**************************************** -->
+                  <div class="titulo-modulo">Estado</div>
+                  <div id="mostrar_estado"></div>
+                  <!-- *****************************CONTENIDO**************************************** -->
+          </td><!-- *******TD PRINCIPAL 2******* -->
+          <td><!-- *******MOSTRAR MUNICIPIO******* -->
+                  <!-- *****************************CONTENIDO**************************************** -->
+                  <div class="titulo-modulo">Municipio</div>
+                  <div id="mostrar_municipio"></div>
+                   <!-- *****************************CONTENIDO**************************************** -->
+          </td><!-- *******TD PRINCIPAL 2******* -->
+          <td><!-- *******MOSTRAR MUNICIPIO******* -->
+                  <!-- *****************************CONTENIDO**************************************** -->
+                  <div class="titulo-modulo">Parroquia</div>
+                  <div id="mostrar_parroquia"></div>
+                   <!-- *****************************CONTENIDO**************************************** -->
+          </td><!-- *******TD PRINCIPAL 2******* -->
+          </tr><!-- *******TR PRINCIPAL 2******* -->
+          </table><!-- *******TABLA PRINCIPAL******* -->
+     </div>
+</body>
+</html>

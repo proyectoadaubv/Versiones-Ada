@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<header>
+<meta charset="utf-8">
+
+<script>
+$(document).ready(function(){
+          
+         $("#Mostrar_datos_profesiones").load('../procesos/mostrar-profesion.php');//Cargar datos desde la base de datos
+         mayuscula("input#BusquedaProfesion");//Convertir en mayuscula
+         texto_fondo("#BusquedaProfesion", "Ej: Licenciado");//Colocar texto de fondo
+         entrada_raton('#BusquedaProfesion');//Evento que se ejecuta al entrar el mouse adentro
+
+        var consulta;
+        //hacemos focus al campo de búsqueda
+        $("#BusquedaProfesion").focus();
+                                                                                                     
+        //comprobamos si se pulsa una tecla
+        $("#BusquedaProfesion").keyup(function(e){
+                                      
+              //obtenemos el texto introducido en el campo de búsqueda
+              consulta = $("#BusquedaProfesion").val();
+              //hace la búsqueda      
+              $.ajax({
+                    type: "POST",
+                    url: "../procesos/mostrar-profesion.php",
+                    data: "valorBusquedaProfesion="+consulta,
+                    dataType: "html",
+                    beforeSend: function(){
+                    //imagen de carga
+                    $("#Mostrar_datos_profesiones").html("<p align='center'><img src='../img/ico-cargar.gif'/></p>");
+                    },
+                    error: function(){
+                     mensaje_error("Error de peticion");
+                    },
+                    success: function(data){                                                    
+                    $("#Mostrar_datos_profesiones").empty();
+                    $("#Mostrar_datos_profesiones").append(data);                                                             
+                    }
+              });                                                                         
+        });                                                     
+});             
+</script>
+</header>
+<body>
+<table border="0" class="estilo_tabla_buscar">
+  <tr>
+    <td>
+      <label class="texto-buscar">Buscar: </label>&nbsp;
+      <input type="text" id="BusquedaProfesion" style="width:60%;" maxlength="15" autocomplete="off"/>
+    </td>
+  </tr>
+</table>
+      <div id="Mostrar_datos_profesiones"></div>
+</body>
+</html>

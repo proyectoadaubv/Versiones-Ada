@@ -1,0 +1,185 @@
+<html lang="es">
+ <head>
+  <meta charset="utf-8"/>
+   <link rel="stylesheet" href="../css/estilo_css.css" />
+      <link rel="stylesheet" href="../css/pcal.css" />
+     <!-- *****Función para eliminar el parpadeo de la carga de esta página*****-->
+     <script type="text/javascript" src="../lib-jQuery/jquery-3.1.0.js"></script>  
+     <script type="text/javascript" src="../js/pcal.js"></script> 
+     <script type="text/javascript" src="../js/validar-periodo.js"></script> 
+     <script type="text/javascript" src="../js/aspecto-elementos.js"></script> 
+     <script type="text/javascript" src="../js/funcion-periodo.js"></script> 
+     <script type="text/javascript" src="../js/funcion-act-acad.js"></script>
+     <script type="text/javascript" src="../js/herramientas.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function(){
+        $('body').hide();
+        $('body').fadeIn(0);
+        of_mod($("#proyectos"));
+        of_mod($("#horarios"));
+        of_mod($("#proyectos"));
+        of_mod($("#usuarios"));
+        on_mod($("#panel-control"));
+        $("#mostrar_periodo").load('../procesos/mostrar-periodo.php');
+        $("#mostrar_actividades").load('../procesos/mostrar-act-acad.php');
+        
+        $.ajax({ type: "POST", url: "../procesos/mostrar-actividades-ac.php", success: function(response){
+        $('.actividades-aca select').html(response).fadeIn();  
+        }
+        });
+        });
+    </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head> 
+  <body>
+        <!-- ************************************************************************************** -->
+         <div>
+           <input type="text"  maxlength="20" id="cod_periodo_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+           <input type="text"  maxlength="20" id="desc_periodo_actual" style='display:none;'><!--VARIABLE OCULTA-->
+           <input type="text"  maxlength="20" id="cod_actividad_estatico" style='display:none;'><!--VARIABLE OCULTA-->
+           <input type="text"  maxlength="20" id="desc_actividad_actual" style='display:none;'><!--VARIABLE OCULTA-->
+         </div>
+        <!-- ************************************************************************************** -->
+       <!--== apertura modal calendario ==-->
+        <div class="modal-calendario">
+         <div class="modal_contenedor">
+            <div class="cerrar-calendario">x</div>
+             <table class="tabla-calendario">
+              <tr>
+              <td>
+               <label>Dia</label>
+               <select id="dia"></select>
+              </td>
+              <td>
+               <label>Mes</label>
+               <select id="mes"></select>
+              </td>
+              <td>
+               <label>Año</label>
+               <select id="anio"></select>
+              </td>
+              </tr>
+              <tr>
+              <td colspan="3">
+              <div class="boton-aceptar"></div>
+              </td>
+              </tr>
+             </table>
+         </div>
+        </div>
+       <!--== cierre modal calendario ==-->
+    <div class="titulo-modulo">Gestionar periodo acad&eacutemico</div>
+     <form id="form_periodo" autocomplete="off">
+          <table border="0" width="100%" class="tabla"><!-- *******TABLA PRINCIPAL ESTABLECER PERIODO******* -->
+            <tr>
+              <td style="width:30%;">
+                <label>Tipo</label>
+                 <select id="tipo-periodo">
+                  <option value="0">ELEGIR</option>
+                 	<option value="3">TRIMESTRE</option>
+                 	<option value="6">SEMESTRE</option>
+                 </select>
+              </td>
+              <td style="width:20%;">
+              <label>Descripci&oacuten</label><br>
+              <input style="width:90%;" type="text" maxlength="8" id="periodo-desc">
+              </td>
+              <td style="width:20%;">
+              <label>Inicio</label><br>
+         <!-- === calendario === -->  
+         <table class="contenedor-calendario" id="fecha-inicio" border="0" width="80%">
+          <tr>
+            <td style="width: 60%;" class="font-campo">
+             <div class="campo" id="fecha-inicio-desc"></div>
+            </td>
+            <td style="width: 40%;">
+            <div class="boton"></div>
+            </td>
+          </tr>
+         </table>             
+         <!-- === calendario === --> 
+              </td>
+              <td style="width:20%;">
+              <label>Cierre</label><br>
+         <!-- === calendario === -->  
+         <table class="contenedor-calendario" id="fecha-cierre" border="0" width="80%">
+          <tr>
+            <td style="width: 60%;" class="font-campo">
+             <div class="campo" id="fecha-cierre-desc"></div>
+            </td>
+            <td style="width: 40%;">
+            <div class="boton"></div>
+            </td>
+          </tr>
+         </table>             
+         <!-- === calendario === --> 
+              </td>
+              </tr>
+              <tr>
+              <td colspan="4">
+              <div class="contenedor-boton">
+              <button type="submit" id="boton-enviar-periodo">
+              <div id="texto-guardar-periodo">Establecer</div>
+              </button>
+              </div>
+              </td>
+             </tr>
+           </table><!-- *******TABLA PRINCIPAL ESTABLECER PERIODO******* -->
+      </form>
+        <div class="fondo-mensaje" id="mensaje"></div>
+        <!-- *****************************CONTENIDO**************************************** -->
+        <div id="mostrar_periodo"></div>
+        <hr>
+    <div class="titulo-modulo">Actividades acad&eacutemicas</div>
+      <form id="form-actividades-academicas">
+        <table width="100%" border="0">
+        <tr> 
+        <td style="width:40%;">
+              <label>Actividad</label>
+              <div class="actividades-aca">
+              <select style="20%" id="actividades-academicas"></select>  
+              </div>
+        </td>
+        <td style="width:30%;">
+              <label>Inicio</label>
+         <!-- === calendario === -->  
+         <table class="contenedor-calendario" id="fecha-actividades-inicio" border="0" width="80%">
+          <tr>
+            <td style="width: 60%;" class="font-campo">
+             <div class="campo" id="fecha-actividad-inicio"></div>
+            </td>
+            <td style="width: 40%;">
+            <div class="boton"></div>
+            </td>
+          </tr>
+         </table>             
+         <!-- === calendario === --> 
+        </td>
+        <td style="width:30%;">
+              <label>Cierre</label>
+         <!-- === calendario === -->  
+         <table class="contenedor-calendario" id="fecha-actividades-cierre" border="0" width="80%">
+          <tr>
+            <td style="width: 60%;" class="font-campo">
+             <div class="campo" id="fecha-actividad-cierre"></div>
+            </td>
+            <td style="width: 40%;">
+            <div class="boton"></div>
+            </td>
+          </tr>
+         </table>             
+         <!-- === calendario === --> 
+       </td>
+       </tr>
+       </table>
+              <div class="contenedor-boton">
+              <button type="submit" id="boton-enviar-actividad">
+              <div id="texto-guardar-actividad">Registrar</div>
+              </button>
+              </div>
+       </form>
+        <div class="fondo-mensaje" id="mensaje-actividad"></div>
+        <!-- *****************************CONTENIDO**************************************** -->
+        <div id="mostrar_actividades"></div>
+  </body>
+</html>

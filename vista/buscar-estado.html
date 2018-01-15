@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<header>
+<meta charset="utf-8">
+
+<script>
+$(document).ready(function(){
+          
+         $("#Mostrar_datos_estado").load('../procesos/tabla-estado.php');//Cargar datos desde la base de datos
+         mayuscula("input#BusquedaEstado");//Convertir en mayuscula
+         texto_fondo("#BusquedaEstado", "Ej: Zulia");//Colocar texto de fondo
+         entrada_raton('#BusquedaEstado');//Evento que se ejecuta al entrar el mouse adentro
+
+        var consulta;
+        //hacemos focus al campo de búsqueda
+        $("#BusquedaEstado").focus();
+                                                                                                     
+        //comprobamos si se pulsa una tecla
+        $("#BusquedaEstado").keyup(function(e){
+                                      
+              //obtenemos el texto introducido en el campo de búsqueda
+              consulta = $("#BusquedaEstado").val();
+              //hace la búsqueda      
+              $.ajax({
+                    type: "POST",
+                    url: "../procesos/tabla-estado.php",
+                    data: "valorBusquedaEstado="+consulta,
+                    dataType: "html",
+                    beforeSend: function(){
+                    //imagen de carga
+                    $("#Mostrar_datos_estado").html("<p align='center'><img src='../img/ico-cargar.gif'/></p>");
+                    },
+                    error: function(){
+                     mensaje_error("Error de peticion");
+                    },
+                    success: function(data){                                                    
+                    $("#Mostrar_datos_estado").empty();
+                    $("#Mostrar_datos_estado").append(data);                                                             
+                    }
+              });                                                                         
+        });                                                     
+});             
+</script>
+</header>
+<body>
+<table border="0" class="estilo_tabla_buscar">
+  <tr>
+    <td>
+      <label class="texto-buscar">Buscar: </label>&nbsp;
+      <input type="text" id="BusquedaEstado" style="width:50%;" maxlength="15" autocomplete="off"/>
+    </td>
+  </tr>
+</table>
+      <div id="Mostrar_datos_estado"></div>
+</body>
+</html>

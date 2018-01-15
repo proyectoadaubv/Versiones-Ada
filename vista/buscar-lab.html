@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<header>
+<meta charset="utf-8">
+
+<script>
+$(document).ready(function(){
+          
+         $("#Mostrar_datos_lab").load('../procesos/mostrar-lab.php');//Cargar datos desde la base de datos
+         mayuscula("input#Busqueda_lab");//Convertir en mayuscula
+         texto_fondo("#Busqueda_lab", "Ej: lab 1");//Colocar texto de fondo
+         entrada_raton('#Busqueda_lab');//Evento que se ejecuta al entrar el mouse adentro
+         letras_numeros('#Busqueda_lab');
+
+        var consulta;
+        //hacemos focus al campo de búsqueda
+        $("#Busqueda_lab").focus();
+                                                                                                     
+        //comprobamos si se pulsa una tecla
+        $("#Busqueda_lab").keyup(function(e){
+                                      
+              //obtenemos el texto introducido en el campo de búsqueda
+              consulta = $("#Busqueda_lab").val();
+              //hace la búsqueda      
+              $.ajax({
+                    type: "POST",
+                    url: "../procesos/mostrar-lab.php",
+                    data: "valorBusquedaLab="+consulta,
+                    dataType: "html",
+                    beforeSend: function(){
+                    //imagen de carga
+                    $("#Mostrar_datos_lab").html("<p align='center'><img src='../img/ico-cargar.gif'/></p>");
+                    },
+                    error: function(){
+                     mensaje_error("Error de peticion");
+                    },
+                    success: function(data){                                                    
+                    $("#Mostrar_datos_lab").empty();
+                    $("#Mostrar_datos_lab").append(data);                                                             
+                    }
+              });                                                                         
+        });                                                     
+});             
+</script>
+</header>
+<body>
+<table border="0" class="estilo_tabla_buscar">
+  <tr>
+    <td>
+      <label class="texto-buscar">Buscar: </label>&nbsp;
+      <input type="text" id="Busqueda_lab" style="width:60%;" maxlength="20" autocomplete="off"/>
+    </td>
+  </tr>
+</table>
+      <div id="Mostrar_datos_lab"></div>
+</body>
+</html>
